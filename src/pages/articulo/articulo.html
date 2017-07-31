@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Revista Planteamientos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8>
+        <ion-card no-padding>
+          <iframe width="100%" height="410" [src]="(articulo | async)?.video | youtube" frameborder="0" allowfullscreen>
+          </iframe>
+        </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Comentarios
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col col-4>
+        <ion-card>
+          <img [attr.src]="(articulo | async)?.thumbnail | url | async">
+          <ion-card-content>
+              <ion-card-title>
+                {{ (articulo | async)?.titulo }}
+              </ion-card-title>
+              <p>{{ (articulo | async)?.descripcion }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

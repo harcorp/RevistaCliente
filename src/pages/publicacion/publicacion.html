@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Revista Planteamientos</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col col-md-4 col-sm-12 *ngFor="let item of items | async">
+            <ion-card>
+              <img [attr.src]="item.thumbnail | url | async ">
+              <ion-card-content>
+                <ion-card-title>
+                  {{ item.titulo }}
+                </ion-card-title>
+              </ion-card-content>
+              <ion-row no-padding>
+                <ion-col>
+                  <button ion-button clear medium color="danger" icon-start (click)="goToArticulo(item.$key)">
+                    <ion-icon name='arrow-forward'></ion-icon>
+                    Ver Más
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
