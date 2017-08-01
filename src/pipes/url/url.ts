@@ -16,7 +16,6 @@ export class UrlPipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: string, args) {
-    console.log(value);
     if(value != null){
       return new Promise(resolve => {
         this.fb.storage().ref().child(value).getDownloadURL()

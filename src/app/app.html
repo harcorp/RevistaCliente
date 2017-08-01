@@ -7,9 +7,6 @@
 
   <ion-content>
     <ion-list no-lines>
-      <button menuClose ion-item (click)="goHome()">
-        <ion-icon name="home" item-start></ion-icon>Inicio
-      </button>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon" item-start></ion-icon>{{p.title}}
       </button>

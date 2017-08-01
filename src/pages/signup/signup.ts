@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 
-@IonicPage()
+@IonicPage({
+  segment: 'registrarse'
+})
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',

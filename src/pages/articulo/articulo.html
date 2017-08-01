@@ -4,11 +4,25 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Revista Planteamientos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
+        <ion-icon name="person"></ion-icon>
+        Ingresar
+      </button>
+      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged">
+        <ion-icon name="person-add"></ion-icon>
+        Registrarse
+      </button>
+      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged">
+        <ion-icon name="exit"></ion-icon>
+        Cerrar Sesión
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="masters">
   <ion-grid>
     <ion-row>
       <ion-col col-8>
@@ -37,4 +51,13 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-fab right bottom *ngIf="logged">
+    <button ion-fab color="primary"><ion-icon name="menu"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="signOut()"><ion-icon name="videocam"></ion-icon></button>
+      <button ion-fab><ion-icon name="mic"></ion-icon></button>
+      <button ion-fab (click)="text()"><ion-icon name="quote"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

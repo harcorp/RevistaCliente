@@ -1,42 +1,43 @@
-<!--
-  Generated template for the SignupPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>signup</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Registrarse</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content padding class="masters">
+  <ion-row>
+    <ion-col col-md-6 offset-md-3>
+      <ion-card>
+        <ion-card-content>
+          <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 
-<ion-content padding>
-  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+            <ion-item>
+              <ion-label stacked>Correo electronico</ion-label>
+              <ion-input formControlName="email" type="email" placeholder="Su correo electronico "
+                [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
+              <p>Por favor ingrese un correo valido.</p>
+            </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input formControlName="email" type="email" placeholder="Your email address"
-        [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
-      <p>Please enter a valid email.</p>
-    </ion-item>
+            <ion-item>
+              <ion-label stacked>Contraseña</ion-label>
+              <ion-input formControlName="password" type="password"  placeholder="Su contraseña"
+                [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
+              <p>Su contraseña necesita tener mas de seis caracteres.</p>
+            </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input formControlName="password" type="password"  placeholder="Your password"
-        [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
-      <p>Your password needs more than 6 characters.</p>
-    </ion-item>
+            <button ion-button block type="submit">
+              Crear la cuenta
+            </button>
 
-    <button ion-button block type="submit">
-      Create an Account
-    </button>
-
-  </form>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

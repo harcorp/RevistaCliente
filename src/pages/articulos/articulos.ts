@@ -38,23 +38,24 @@ export class ArticulosPage {
 
   navigateToPublicacion(pubId: string){
     this.presentLoading();
-    this.navCtrl.setRoot('PublicacionPage', { pubId });
+    this.navCtrl.push('PublicacionPage', { pubId });
   }
 
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Cargando...",
-      duration: 3000,
       dismissOnPageChange: true
     });
     loader.present();
   }
 
   goToLogin(){
-    this.navCtrl.setRoot('LoginPage');
+    this.presentLoading();
+    this.navCtrl.push('LoginPage');
   }
 
   goToSignUp(){
-    this.navCtrl.setRoot('SignupPage');
+    this.presentLoading();
+    this.navCtrl.push('SignupPage');
   }
 }

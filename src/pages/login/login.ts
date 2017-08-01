@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 
-@IonicPage()
+@IonicPage({
+  segment: 'ingresar'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -30,7 +32,7 @@ export class LoginPage {
       } else {
         this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then( authData => {
-          this.navCtrl.setRoot('ArticulosPage');
+          this.navCtrl.pop();
         }, error => {
           this.loading.dismiss().then( () => {
             let alert = this.alertCtrl.create({
@@ -54,11 +56,11 @@ export class LoginPage {
   }
 
   goToResetPassword(){
-    this.navCtrl.setRoot('ResetPasswordPpage');
+    this.navCtrl.push('ResetPassswordPage');
   }
 
   createAccount(){
-    this.navCtrl.setRoot('SignupPage');
+    this.navCtrl.push('SignupPage');
   }
 
 }
