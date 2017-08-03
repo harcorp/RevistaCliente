@@ -36,6 +36,22 @@
               Comentarios
             </ion-card-title>
           </ion-card-header>
+          
+          <ion-card-content>
+            <ion-list >
+              <ion-item *ngFor="let comentario of comentarios | async">
+                  <h2>{{ comentario.uid_user | getName | async }}</h2>
+                  <p *ngIf="comentario.type == 1">{{ comentario.texto }}</p>
+                  <p *ngIf="comentario.type == 2">
+                    <audio controls [attr.src]="comentario.file | url | async"></audio>
+                  </p>
+                  <p *ngIf="comentario.type == 3">
+                    <video width="320" height="240" [attr.src]="comentario.file | url | async" controls>
+                    </video>
+                  </p>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
         </ion-card>
       </ion-col>
       <ion-col col-4>
@@ -55,9 +71,9 @@
   <ion-fab right bottom *ngIf="logged">
     <button ion-fab color="primary"><ion-icon name="menu"></ion-icon></button>
     <ion-fab-list side="left">
-      <button ion-fab (click)="signOut()"><ion-icon name="videocam"></ion-icon></button>
-      <button ion-fab><ion-icon name="mic"></ion-icon></button>
-      <button ion-fab (click)="text()"><ion-icon name="quote"></ion-icon></button>
+      <button ion-fab (click)="modalComentarioVideo()"><ion-icon name="videocam"></ion-icon></button>
+      <button ion-fab (click)="modalComentarioVoice()"><ion-icon name="mic"></ion-icon></button>
+      <button ion-fab (click)="modalComentarioTexto()"><ion-icon name="quote"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>

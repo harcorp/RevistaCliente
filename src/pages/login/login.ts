@@ -48,10 +48,10 @@ export class LoginPage {
           });
         });
 
-        this.loading = this.loadingCtrl.create({
+        /*this.loading = this.loadingCtrl.create({
           dismissOnPageChange: true,
         });
-        this.loading.present();
+        this.loading.present();*/
       }
   }
 

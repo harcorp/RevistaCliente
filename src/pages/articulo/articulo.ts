@@ -1,9 +1,20 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, 
+        NavController, 
+        NavParams, 
+        LoadingController, 
+        AlertController, 
+        ToastController,
+        ModalController,
+} from 'ionic-angular';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from "rxjs/Observable";
+import { LoginPage } from "../login/login";
+import { ComentarioTextoPage } from "../comentario-texto/comentario-texto";
+import { ComentarioVoicePage } from "../comentario-voice/comentario-voice";
+import { ComentarioVideoPage } from "../comentario-video/comentario-video";
 
 
 @IonicPage({
@@ -26,12 +37,11 @@ export class ArticuloPage {
 
   comentarios: FirebaseListObservable<any>;
   comentsUser: FirebaseListObservable<any>;
-  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
               private afDB: AngularFireDatabase, public loadingCtrl: LoadingController,
             public afAuth: AngularFireAuth, public alertCtrl: AlertController, 
-            public toastCtrl: ToastController) {
+            public toastCtrl: ToastController, private modalCtrl: ModalController) {
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.displayName = null;
@@ -42,7 +52,7 @@ export class ArticuloPage {
       this.displayName = user.uid;
       this.logged = true;      
     });
-    
+  
   }
 
   signOut() {
@@ -53,7 +63,12 @@ export class ArticuloPage {
     this.pubId = this.navParams.get('pubId');
     this.articuloId = this.navParams.get('articuloId');
     this.articulo = this.afDB.object('/articulos/' + this.pubId + '/' + this.articuloId);
-    this.comentarios = this.afDB.list('/comentarios/' + this.articuloId);
+    this.comentarios = this.afDB.list('/comentarios/' + this.articuloId,{
+      query: {
+        orderByChild: 'aproved',
+        equalTo: true
+      }
+    });
   }
 
 
@@ -65,48 +80,6 @@ export class ArticuloPage {
     loader.present();
   }
 
-  goToLogin(){
-    this.presentLoading();
-    this.navCtrl.push('LoginPage');
-  }
-
-  text() {
-    let prompt = this.alertCtrl.create({
-      title: 'Comentario de Texto',
-      message: "Escriba su comentario.",
-      inputs: [
-        {
-          name: 'comentario',
-          placeholder: 'Comentario'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Comentar',
-          handler: data => {
-            console.log(data);
-            let comentario: string = data.comentario;
-            console.log(comentario);
-            if(comentario.length > 255){
-              this.presentToast('El comentario no puede superar los 255 caracteres');
-              return false;
-            }else{
-              this.cargarComentarioTexto(comentario);
-            }
-
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
-
   presentToast(mensaje: string) {
     let toast = this.toastCtrl.create({
       message: mensaje,
@@ -115,23 +88,23 @@ export class ArticuloPage {
     toast.present();
   }
 
-  cargarComentarioTexto(mensaje: string){
-    this.comentsUser = this.afDB.list('/user-comentarios/' + this.uidUser + '/' + this.articuloId);
-    this.presentLoading();
-    this.comentarios.push({
-      aproved: false,
-      texto: mensaje,
-      type: 1,
-      uid_user: this.uidUser
-    }).then(result => {
-      this.comentsUser.update(result.key, {
-        aproved: false,
-        texto: mensaje,
-        type: 1,
-        uid_user: this.uidUser
-      }).then(resultado => {
-        this.presentToast('Su comentario fue enviado con exito. A la espera de aprobación');
-      });
-    });
+  modalComentarioTexto(){
+    let modal = this.modalCtrl.create(ComentarioTextoPage, {uidUser: this.uidUser, articuloId: this.articuloId});
+    modal.present();
+  }
+
+  modalComentarioVoice(){
+    let modal = this.modalCtrl.create(ComentarioVoicePage, {uidUser: this.uidUser, articuloId: this.articuloId});
+    modal.present();
+  }
+
+  modalComentarioVideo(){
+    let modal = this.modalCtrl.create(ComentarioVideoPage, {uidUser: this.uidUser, articuloId: this.articuloId});
+    modal.present();
+  }
+
+  goToLogin() {
+    let modal = this.modalCtrl.create(LoginPage);
+    modal.present();
   }
 }

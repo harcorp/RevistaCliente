@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Comentario
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <audio #audio class="audio" controls autoplay [hidden]="!grabado"></audio>
+    <button ion-button color="primary" (click)="startRecording()" icon-left *ngIf="!grabando"> <ion-icon name="mic"></ion-icon> Grabar </button>
+    <button ion-button color="primary"(click) ="stopRecording()" *ngIf="grabando"> Detener</button>
+    <button ion-button color="primary" (click)="upload()" *ngIf="grabado"> Cargar</button>
+</ion-content>

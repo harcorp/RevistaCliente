@@ -11,6 +11,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
+import { LoginPage } from "../pages/login/login";
+import { ComentarioTextoPage } from "../pages/comentario-texto/comentario-texto";
+import { ComentarioVoicePage } from "../pages/comentario-voice/comentario-voice";
+import { ComentarioVideoPage } from "../pages/comentario-video/comentario-video";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB0f-eM3Eq-_V960Re-sOGlj_YA8HGvSpw",
@@ -24,6 +28,10 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
+    ComentarioTextoPage,
+    ComentarioVoicePage,
+    ComentarioVideoPage,  
   ],
   imports: [
     BrowserModule,
@@ -36,6 +44,10 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
+    ComentarioTextoPage,
+    ComentarioVoicePage,
+    ComentarioVideoPage
   ],
   providers: [
     StatusBar,
