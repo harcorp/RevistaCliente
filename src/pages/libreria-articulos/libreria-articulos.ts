@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the LibreriaArticulosPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 @IonicPage()
 @Component({
   selector: 'page-libreria-articulos',
@@ -15,11 +9,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LibreriaArticulosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  articulos: FirebaseListObservable<any>;
+
+  constructor(private afAuth : AngularFireAuth, private afDb: AngularFireDatabase,
+    public navCtrl: NavController, public navParams: NavParams) {
+
+    this.articulos = this.afDb.list('/biblioteca_articulos', {
+      query: {
+        orderByChild: 'fecha'
+      }
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LibreriaArticulosPage');
+  signOut() {
+    this.afAuth.auth.signOut();
   }
 
 }
