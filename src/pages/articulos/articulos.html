@@ -3,26 +3,33 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Revista Planteamientos</ion-title>
-      <ion-buttons end>
-      <button ion-button icon-left color="royal" (click)="goToLogin()">
+    <ion-title>Planteamientos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
         <ion-icon name="person"></ion-icon>
         Ingresar
       </button>
-      <button ion-button icon-left (click)="goToSignUp()">
+      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged">
         <ion-icon name="person-add"></ion-icon>
         Registrarse
+      </button>
+      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged">
+        <ion-icon name="exit"></ion-icon>
+        Cerrar Sesión
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding class="masters">
   <ion-grid>
     <ion-row>
-      <ion-col col-9>
+      <ion-col col-md-10>
         <ion-row>
-          <ion-col col-2>
+          <ion-col col-3>
+            <ion-card>
+              <ion-card-content>
             <ion-title>Categorías <ion-icon small name="funnel"></ion-icon></ion-title>
             <ion-list no-lines>
               <button ion-item (click)="filterBy(undefined)">Sin Filtro</button>
@@ -30,13 +37,15 @@
                 {{ categoria.nombre }}
               </button> 
             </ion-list>
+              </ion-card-content>
+            </ion-card>
           </ion-col>
-          <ion-col col-10>
+          <ion-col col-9>
             <ion-grid>
               <ion-row>
                 <ion-col col-4 *ngFor="let item of items | async">
                   <ion-card>
-                    <img [attr.src]="item.thumbnail | url | async ">
+                    <img (click)="navigateToPublicacion(item.$key)" [attr.src]="item.thumbnail | url | async ">
                     <ion-card-content>
                       <ion-card-title>
                         {{ item.titulo }}
@@ -58,7 +67,7 @@
           </ion-col>
         </ion-row>
       </ion-col>
-      <ion-col col-3>
+      <ion-col col-md-2>
         <ion-card>
           <img src="https://firebasestorage.googleapis.com/v0/b/revista-digital-bb5d4.appspot.com/o/Banner-publicidad-compressor.png?alt=media&token=80aef896-1460-46fc-9eb1-911c237149ba">
         </ion-card>

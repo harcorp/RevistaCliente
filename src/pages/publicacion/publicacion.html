@@ -3,7 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Revista Planteamientos</ion-title>
+    <ion-title>Planteamientos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
+        <ion-icon name="person"></ion-icon>
+        Ingresar
+      </button>
+      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged">
+        <ion-icon name="person-add"></ion-icon>
+        Registrarse
+      </button>
+      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged">
+        <ion-icon name="exit"></ion-icon>
+        Cerrar Sesión
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="masters">
@@ -13,7 +27,7 @@
         <ion-row>
           <ion-col col-md-4 col-sm-12 *ngFor="let item of items | async">
             <ion-card>
-              <img [attr.src]="item.thumbnail | url | async ">
+              <img (click)="goToArticulo(item.$key, pubId)" [attr.src]="item.thumbnail | url | async ">
               <ion-card-content>
                 <ion-card-title>
                   {{ item.titulo }}

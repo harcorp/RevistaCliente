@@ -1,16 +1,21 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Ingresar</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Ingresar
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
-
 
 <ion-content padding class="masters">
   <ion-row>
-    <ion-col col-md-6 offset-md-3>
+    <ion-col col-md-8 offset-md-2>
     
 <ion-card>
   <ion-card-content>

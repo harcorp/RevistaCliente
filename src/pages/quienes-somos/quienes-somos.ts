@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the QuienesSomosPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from "../login/login";
 
 @IonicPage()
 @Component({
@@ -15,11 +10,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class QuienesSomosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  displayName: string;
+  logged: boolean;
+  uidUser: string;
+  
+  constructor(public loadingCtrl: LoadingController, public modalCtrl: ModalController,
+    public afAuth: AngularFireAuth,
+    public navCtrl: NavController, public navParams: NavParams) {
+
+    afAuth.authState.subscribe(user => {
+      if (!user) {
+        this.displayName = null;
+        this.logged = false;        
+        return;
+      }
+      this.uidUser = user.uid;
+      this.displayName = user.displayName;
+      this.logged = true;      
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad QuienesSomosPage');
+    
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      dismissOnPageChange: true
+    });
+    loader.present();
+  }
+
+  goToSignUp(){
+    this.presentLoading();
+    this.navCtrl.push('SignupPage');
+  }
+
+  signOut() {
+    this.afAuth.auth.signOut();
+  }
+
+  goToLogin() {
+    let modal = this.modalCtrl.create(LoginPage);
+    modal.present();
   }
 
 }

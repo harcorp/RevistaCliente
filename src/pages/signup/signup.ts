@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
@@ -18,9 +18,10 @@ export class SignupPage {
 
   constructor(public authData: AuthProvider, public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController, public alertCtrl: AlertController,
-    public navCtrl: NavController, public navParams: NavParams) {
+    public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
     this.signupForm = formBuilder.group({
+      nombres: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
@@ -54,6 +55,10 @@ export class SignupPage {
       });
       this.loading.present();
     }
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

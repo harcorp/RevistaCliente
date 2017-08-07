@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
-import * as RecordRTC from 'recordrtc';
-import { AngularFireAuth } from 'angularfire2/auth';
+import * as RecordRTC from 'recordrtc/recordrtc.min';
 import { AngularFireDatabase ,FirebaseListObservable } from "angularfire2/database";
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
@@ -20,10 +19,11 @@ export class ComentarioVoicePage {
   uidUser: string;
   comments: FirebaseListObservable<any>;
   commentsUser: FirebaseListObservable<any>;
+  loader: any;
 
   private stream: MediaStream;
   private recordRTC: any;
-  duration: number = 600 * 1000;
+  duration: number = 60 * 1000;
   reaming: number = this.duration;
   @ViewChild('audio') audio;
 
@@ -37,22 +37,21 @@ export class ComentarioVoicePage {
   afterViewInit(){
     let audio:HTMLVideoElement = this.audio.nativeElement;
     audio.muted = false;
-    audio.controls = true;
-    audio.autoplay = false;
   }
 
   toggleControls() {
     let audio: HTMLVideoElement = this.audio.nativeElement;
     audio.muted = !audio.muted;
-    audio.controls = !audio.controls;
-    audio.autoplay = !audio.autoplay;
   }
 
   successCallback(stream: MediaStream) {
     this.grabando = true;
     var options = {
       type: 'audio',
-      mimetype: 'audio/wav'
+      mimeType: 'audio/wav',
+      recorderType: RecordRTC.StereoAudioRecorder,
+      numberOfAudioChannels: 1,
+      desiredSampRate: 8 * 1000,
     };
     this.stream = stream;
     this.recordRTC = RecordRTC(stream, options);
@@ -79,7 +78,7 @@ export class ComentarioVoicePage {
     this.grabado = true;
     let audio: HTMLVideoElement = this.audio.nativeElement;
     audio.src = audioVideoWebMURL;
-    this.toggleControls();
+    this.loader.dismiss();
   }
 
   errorCallback() {
@@ -87,6 +86,8 @@ export class ComentarioVoicePage {
   }
 
   startRecording() {
+
+    this.grabado = false;
     let mediaConstraints = { audio: true, video: false};
     navigator.mediaDevices
       .getUserMedia(mediaConstraints)
@@ -94,6 +95,8 @@ export class ComentarioVoicePage {
   }
 
   stopRecording() {
+    this.presentLoading();
+    this.toggleControls();
     this.grabando = false;
     let recordRTC = this.recordRTC;
     recordRTC.stopRecording(this.processAudio.bind(this));
@@ -112,7 +115,7 @@ export class ComentarioVoicePage {
     this.comments = this.afDB.list('/comentarios/' + this.articuloId);
     this.commentsUser = this.afDB.list('/user-comentarios/' + this.uidUser + '/' + this.articuloId);
     var recordedBlob = recordRTC.getBlob();
-    var filename = '/audios/' + this.articuloId + '/' + UUID.UUID() + '.webm';
+    var filename = '/audios/' + this.articuloId + '/' + UUID.UUID() + '.wav';
     this.fb.storage().ref( filename).put(recordedBlob).then(resultado => {
     this.comments.push({
       aproved: false,
@@ -132,6 +135,13 @@ export class ComentarioVoicePage {
       });
     });
     });
+  }
+
+    presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Cargando..."
+    });
+    this.loader.present();
   }
 
 }

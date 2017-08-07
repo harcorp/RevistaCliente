@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Revista Planteamientos</ion-title>
+    <ion-title>Planteamientos</ion-title>
     <ion-buttons end>
       <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
         <ion-icon name="person"></ion-icon>
@@ -43,10 +43,10 @@
                   <h2>{{ comentario.uid_user | getName | async }}</h2>
                   <p *ngIf="comentario.type == 1">{{ comentario.texto }}</p>
                   <p *ngIf="comentario.type == 2">
-                    <audio controls [attr.src]="comentario.file | url | async"></audio>
+                    <audio controlsList="nodownload" controls [attr.src]="comentario.file | url | async"></audio>
                   </p>
                   <p *ngIf="comentario.type == 3">
-                    <video width="320" height="240" [attr.src]="comentario.file | url | async" controls>
+                    <video controlsList="nodownload" width="320" height="240" [attr.src]="comentario.file | url | async" controls>
                     </video>
                   </p>
               </ion-item>
@@ -69,7 +69,7 @@
   </ion-grid>
 
   <ion-fab right bottom *ngIf="logged">
-    <button ion-fab color="primary"><ion-icon name="menu"></ion-icon></button>
+    <button ion-fab color="secondary"><ion-icon name="menu"></ion-icon></button>
     <ion-fab-list side="left">
       <button ion-fab (click)="modalComentarioVideo()"><ion-icon name="videocam"></ion-icon></button>
       <button ion-fab (click)="modalComentarioVoice()"><ion-icon name="mic"></ion-icon></button>

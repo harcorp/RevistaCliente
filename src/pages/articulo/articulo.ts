@@ -15,6 +15,7 @@ import { LoginPage } from "../login/login";
 import { ComentarioTextoPage } from "../comentario-texto/comentario-texto";
 import { ComentarioVoicePage } from "../comentario-voice/comentario-voice";
 import { ComentarioVideoPage } from "../comentario-video/comentario-video";
+import { SignupPage } from "../signup/signup";
 
 
 @IonicPage({
@@ -49,14 +50,9 @@ export class ArticuloPage {
         return;
       }
       this.uidUser = user.uid;
-      this.displayName = user.uid;
+      this.displayName = user.displayName;
       this.logged = true;      
     });
-  
-  }
-
-  signOut() {
-    this.afAuth.auth.signOut();
   }
 
   ionViewDidLoad() {
@@ -107,4 +103,15 @@ export class ArticuloPage {
     let modal = this.modalCtrl.create(LoginPage);
     modal.present();
   }
+
+  goToSignUp() {
+    let modal = this.modalCtrl.create(SignupPage);
+    modal.present();
+  }
+
+  signOut() {
+    this.afAuth.auth.signOut();
+  }
+
+  
 }

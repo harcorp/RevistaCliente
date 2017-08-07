@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
 import * as RecordRTC from 'recordrtc';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase ,FirebaseListObservable } from "angularfire2/database";
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
 import { UUID } from 'angular2-uuid';
+import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { Observable } from "rxjs/Observable";
 
 @IonicPage()
 @Component({
@@ -20,49 +21,51 @@ export class ComentarioVideoPage {
   uidUser: string;
   comments: FirebaseListObservable<any>;
   commentsUser: FirebaseListObservable<any>;
+  duracion: any;
+  timer: any;
 
   private stream: MediaStream;
   private recordRTC: any;
-  duration: number = 600 * 1000;
+  readyToRecord: boolean = false;
+  duration: number = 15 * 1000;
   reaming: number = this.duration;
   @ViewChild('video') video;
 
   constructor(private toastCtrl: ToastController, private fb: FirebaseApp, private afDB: AngularFireDatabase,
-    private afAuth: AngularFireAuth, private loadingCtrl: LoadingController,
+     private loadingCtrl: LoadingController,
     public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
       this.uidUser = this.navParams.get('uidUser');
       this.articuloId = this.navParams.get('articuloId');
+
+    let mediaConstraints = {
+      video: {width: {exact: 320}, height: {exact: 240}},
+      audio: true,
+    };
+    navigator.mediaDevices
+      .getUserMedia(mediaConstraints)
+      .then(this.successCallback.bind(this), this.errorCallback.bind(this));
   }
 
   afterViewInit(){
     let video:HTMLVideoElement = this.video.nativeElement;
-    video.muted = false;
-    video.controls = true;
-    video.autoplay = false;
+    video.muted = true;
+    video.controls = false;
+    video.autoplay = true;
   }
 
   toggleControls() {
     let video: HTMLVideoElement = this.video.nativeElement;
     video.muted = !video.muted;
-    //video.controls = !video.controls;
+    video.controls = !video.controls;
     video.autoplay = !video.autoplay;
   }
 
   successCallback(stream: MediaStream) {
-    this.grabando = true;
-    var options = {
-      mimeType: 'video/webm', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
-      audioBitsPerSecond: 128000,
-      videoBitsPerSecond: 128000,
-      bitsPerSecond: 128000 // if this line is provided, skip above two
-    };
+    this.readyToRecord = true;
     this.stream = stream;
-    this.recordRTC = RecordRTC(stream, options);
-    this.recordRTC.startRecording();
     let video: HTMLVideoElement = this.video.nativeElement;
-    video.src = window.URL.createObjectURL(stream);
-    this.toggleControls();
+    video.src = window.URL.createObjectURL(this.stream);
   }
 
   errorCallback() {
@@ -71,6 +74,7 @@ export class ComentarioVideoPage {
 
   processVideo(audioVideoWebMURL, loading) {
     this.grabado = true;
+    this.grabando = false;
     let video: HTMLVideoElement = this.video.nativeElement;
     video.src = audioVideoWebMURL;
     this.toggleControls();
@@ -81,6 +85,33 @@ export class ComentarioVideoPage {
   }
 
   startRecording() {
+    if(this.readyToRecord){
+      this.grabando = true;
+      this.timer = TimerObservable.create(0, 1000).subscribe(t => { 
+        if(t <= 15 && this.grabando){
+          this.duracion = "15:" + t;
+        }else{
+          this.timer = null;
+        }
+      });
+      var options = {
+        mimeType: 'video/webm\;codecs=h264', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+        audioBitsPerSecond: 64000,
+        videoBitsPerSecond: 64000,
+        bitsPerSecond: 64000 // if this line is provided, skip above two
+      };
+      this.recordRTC = RecordRTC(this.stream, options);
+      this.recordRTC.setRecordingDuration(this.duration).onRecordingStopped(this.processVideo.bind(this));
+      this.recordRTC.startRecording();
+      let video: HTMLVideoElement = this.video.nativeElement;
+      video.src = window.URL.createObjectURL(this.stream);
+    }
+  }
+
+  volverCargar(){
+    this.toggleControls();
+    this.grabado = false;
+    this.duracion = null;
     let mediaConstraints = {
       video: {width: {exact: 320}, height: {exact: 240}},
       audio: true,

@@ -1,18 +1,33 @@
 <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Registrarse</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar color="primary">
+    <ion-title>
+      Registrarse
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding class="masters">
   <ion-row>
-    <ion-col col-md-6 offset-md-3>
+    <ion-col col-md-8 offset-md-2>
       <ion-card>
         <ion-card-content>
           <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
-
+            
+            <ion-item>
+              <ion-label stacked>Nombres</ion-label>
+              <ion-input formControlName="nombres" type="name" placeholder="Su nombre"
+                [class.invalid]="!signupForm.controls.nombres.valid"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!signupForm.controls.nombres.valid  && signupForm.controls.nombres.dirty">
+              <p>Campo requerido.</p>
+            </ion-item>
             <ion-item>
               <ion-label stacked>Correo electronico</ion-label>
               <ion-input formControlName="email" type="email" placeholder="Su correo electronico "

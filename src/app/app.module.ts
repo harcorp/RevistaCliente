@@ -15,6 +15,7 @@ import { LoginPage } from "../pages/login/login";
 import { ComentarioTextoPage } from "../pages/comentario-texto/comentario-texto";
 import { ComentarioVoicePage } from "../pages/comentario-voice/comentario-voice";
 import { ComentarioVideoPage } from "../pages/comentario-video/comentario-video";
+import { SignupPage } from "../pages/signup/signup";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB0f-eM3Eq-_V960Re-sOGlj_YA8HGvSpw",
@@ -29,6 +30,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     LoginPage,
+    SignupPage,
     ComentarioTextoPage,
     ComentarioVoicePage,
     ComentarioVideoPage,  
@@ -45,6 +47,7 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     LoginPage,
+    SignupPage,
     ComentarioTextoPage,
     ComentarioVoicePage,
     ComentarioVideoPage
