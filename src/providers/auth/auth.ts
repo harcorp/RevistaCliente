@@ -25,5 +25,4 @@ export class AuthProvider {
   resetPassword(email: string): firebase.Promise<any>{
     return this.afAuth.auth.sendPasswordResetEmail(email);
   }
-
 }

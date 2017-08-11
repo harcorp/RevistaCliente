@@ -6,7 +6,6 @@ import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
 import { UUID } from 'angular2-uuid';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { Observable } from "rxjs/Observable";
 
 @IonicPage()
 @Component({

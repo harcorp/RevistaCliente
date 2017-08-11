@@ -5,17 +5,14 @@
     </button>
     <ion-title>Planteamientos</ion-title>
     <ion-buttons end>
-      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
+      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
         <ion-icon name="person"></ion-icon>
-        Ingresar
       </button>
-      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged">
+      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged" icon-only>
         <ion-icon name="person-add"></ion-icon>
-        Registrarse
       </button>
-      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged">
+      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged" icon-only>
         <ion-icon name="exit"></ion-icon>
-        Cerrar Sesión
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -25,7 +22,7 @@
     <ion-row>
       <ion-col>
         <ion-row>
-          <ion-col col-md-4 col-sm-12 *ngFor="let item of items | async">
+          <ion-col col-md-3 col-12 *ngFor="let item of items | async">
             <ion-card>
               <img (click)="goToArticulo(item.$key, pubId)" [attr.src]="item.thumbnail | url | async ">
               <ion-card-content>

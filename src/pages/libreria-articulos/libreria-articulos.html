@@ -5,17 +5,14 @@
     </button>
     <ion-title>Articulos</ion-title>
     <ion-buttons end>
-      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
+      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
         <ion-icon name="person"></ion-icon>
-        Ingresar
       </button>
-      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged">
+      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged" icon-only>
         <ion-icon name="person-add"></ion-icon>
-        Registrarse
       </button>
-      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged">
+      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged" icon-only>
         <ion-icon name="exit"></ion-icon>
-        Cerrar Sesión
       </button>
     </ion-buttons>
   </ion-navbar>

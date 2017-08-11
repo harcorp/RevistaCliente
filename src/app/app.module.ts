@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, enableProdMode } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -16,6 +16,7 @@ import { ComentarioTextoPage } from "../pages/comentario-texto/comentario-texto"
 import { ComentarioVoicePage } from "../pages/comentario-voice/comentario-voice";
 import { ComentarioVideoPage } from "../pages/comentario-video/comentario-video";
 import { SignupPage } from "../pages/signup/signup";
+import { GooglePlus } from '@ionic-native/google-plus';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB0f-eM3Eq-_V960Re-sOGlj_YA8HGvSpw",
@@ -25,7 +26,7 @@ export const firebaseConfig = {
   storageBucket: "revista-digital-bb5d4.appspot.com",
   messagingSenderId: "17548864478"
 };
- 
+ enableProdMode();
 @NgModule({
   declarations: [
     MyApp,
@@ -56,7 +57,8 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    GooglePlus
   ],
 })
 export class AppModule {}

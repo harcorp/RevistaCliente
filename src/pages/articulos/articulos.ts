@@ -9,9 +9,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { LoginPage } from "../login/login";
 import { SignupPage } from "../signup/signup";
 
-@IonicPage({
-  segment: ''
-})
+@IonicPage()
 @Component({
   selector: 'page-articulos',
   templateUrl: 'articulos.html',

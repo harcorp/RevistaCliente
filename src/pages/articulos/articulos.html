@@ -5,17 +5,14 @@
     </button>
     <ion-title>Planteamientos</ion-title>
     <ion-buttons end>
-      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged">
+      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
         <ion-icon name="person"></ion-icon>
-        Ingresar
       </button>
-      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged">
+      <button ion-button icon-left (click)="goToSignUp()" *ngIf="!logged" icon-only>
         <ion-icon name="person-add"></ion-icon>
-        Registrarse
       </button>
-      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged">
+      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged" icon-only>
         <ion-icon name="exit"></ion-icon>
-        Cerrar Sesión
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -25,9 +22,9 @@
 <ion-content padding class="masters">
   <ion-grid>
     <ion-row>
-      <ion-col col-md-10>
+      <ion-col col-sm-12 col-md-10 >
         <ion-row>
-          <ion-col col-3>
+          <ion-col col-md-3>
             <ion-card>
               <ion-card-content>
             <ion-title>Categorías <ion-icon small name="funnel"></ion-icon></ion-title>
@@ -40,10 +37,10 @@
               </ion-card-content>
             </ion-card>
           </ion-col>
-          <ion-col col-9>
+          <ion-col col-md-9>
             <ion-grid>
               <ion-row>
-                <ion-col col-4 *ngFor="let item of items | async">
+                <ion-col col-md-4 *ngFor="let item of items | async">
                   <ion-card>
                     <img (click)="navigateToPublicacion(item.$key)" [attr.src]="item.thumbnail | url | async ">
                     <ion-card-content>
@@ -67,7 +64,7 @@
           </ion-col>
         </ion-row>
       </ion-col>
-      <ion-col col-md-2>
+      <ion-col col-md-2 col-12>
         <ion-card>
           <img src="https://firebasestorage.googleapis.com/v0/b/revista-digital-bb5d4.appspot.com/o/Banner-publicidad-compressor.png?alt=media&token=80aef896-1460-46fc-9eb1-911c237149ba">
         </ion-card>
