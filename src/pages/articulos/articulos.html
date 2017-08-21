@@ -72,7 +72,7 @@
         <ion-card>
           <ion-slides #slide2>
               <ion-slide *ngFor="let banner of banners | async">
-                <img [attr.src]="banner.image | url | async" />                                                                                          
+                <img [src]="banner.image | url | async"/>                                                                                          
               </ion-slide>
           </ion-slides>
         </ion-card>

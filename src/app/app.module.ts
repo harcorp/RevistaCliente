@@ -4,9 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -16,7 +13,6 @@ import { ComentarioTextoPage } from "../pages/comentario-texto/comentario-texto"
 import { ComentarioVoicePage } from "../pages/comentario-voice/comentario-voice";
 import { ComentarioVideoPage } from "../pages/comentario-video/comentario-video";
 import { SignupPage } from "../pages/signup/signup";
-import { GooglePlus } from '@ionic-native/google-plus';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB0f-eM3Eq-_V960Re-sOGlj_YA8HGvSpw",
@@ -54,11 +50,8 @@ export const firebaseConfig = {
     ComentarioVideoPage
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    GooglePlus
   ],
 })
 export class AppModule {}
