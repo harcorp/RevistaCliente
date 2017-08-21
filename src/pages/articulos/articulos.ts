@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, SimpleChanges } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ModalController, Slides } from 'ionic-angular';
 import { FirebaseApp } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -44,8 +44,8 @@ export class ArticulosPage {
       query: {
         equalTo: '1',
         orderByChild: 'type'
-      }
-    })
+      },
+    });
 
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -62,32 +62,39 @@ export class ArticulosPage {
 
   }
 
-  ngAfterViewInit() {
+  /*ionViewDidLoad() {
+    console.log("entro 1");
     setTimeout(() => {
       this.update();
       console.log('entro');
     }, 6000);
+  }*/
+
+  ionViewDidEnter(){
+    setTimeout(() => {
+      this.update();
+    }, 6000);
   }
 
-  ngOnChanges(){
-    this.update();
-    console.log('actualizo');
+  ngOnChanges(changes: SimpleChanges) {
+    setTimeout(() => {
+      console.log('cambio');
+      this.update();
+    }, 6000);
   }
   
   update(){
-    if(this.slide1 != undefined){
       this.slide1.update();  
       this.slide1.loop = true;
       this.slide1.autoplay = 3000;
+      this.slide1.autoplayDisableOnInteraction = false;
       this.slide1.startAutoplay();  
-    }
-    if(this.slide2 != undefined){
+      
       this.slide2.update();  
       this.slide2.loop = true;
       this.slide2.autoplay = 3000;
+      this.slide2.autoplayDisableOnInteraction = false;      
       this.slide2.startAutoplay(); 
-    }
-
   }
 
   filterBy(size: any) {
