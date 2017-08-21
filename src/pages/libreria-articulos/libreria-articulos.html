@@ -22,6 +22,7 @@
   <ion-row>
     <ion-col col-md-3 *ngFor="let articulo of articulos | async">
    <ion-card >
+     <img [attr.src]="articulo.thumbnail | url | async" />
      <ion-card-header>
         {{ articulo.nombre }}
      </ion-card-header>

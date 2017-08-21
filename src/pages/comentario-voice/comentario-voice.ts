@@ -17,6 +17,7 @@ export class ComentarioVoicePage {
   grabando: boolean = false;
   grabado: boolean = false;
   uidUser: string;
+  pubId: string;
   comments: FirebaseListObservable<any>;
   commentsUser: FirebaseListObservable<any>;
   loader: any;
@@ -32,6 +33,7 @@ export class ComentarioVoicePage {
     public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     this.uidUser = this.navParams.get('uidUser');
     this.articuloId = this.navParams.get('articuloId');
+    this.pubId = this.navParams.get('pubId');
   }
 
   afterViewInit(){
@@ -116,18 +118,23 @@ export class ComentarioVoicePage {
     this.commentsUser = this.afDB.list('/user-comentarios/' + this.uidUser + '/' + this.articuloId);
     var recordedBlob = recordRTC.getBlob();
     var filename = '/audios/' + this.articuloId + '/' + UUID.UUID() + '.wav';
+    var time = Date.now() / 1000 * -1;
     this.fb.storage().ref( filename).put(recordedBlob).then(resultado => {
     this.comments.push({
       aproved: false,
       file: filename,
       type: 2,
-      uid_user: this.uidUser
+      uid_user: this.uidUser,
+      timestamp: time,
+      parent: this.pubId,
     }).then(result => {
       this.commentsUser.update(result.key, {
         aproved: false,
         file: filename,
         type: 2,
-        uid_user: this.uidUser
+        uid_user: this.uidUser,
+        timestamp: time,
+        parent: this.pubId,
       }).then(resultado => {
         loader.dismiss();
         this.presentToast('Su comentario fue enviado con exito. A la espera de aprobación');

@@ -35,7 +35,7 @@
           </ion-card-header>
           
           <ion-card-content>
-            <ion-list >
+            <ion-list>
               <ion-item *ngFor="let comentario of comentarios | async">
                   <h2>{{ comentario.uid_user | getName | async }}</h2>
                   <p *ngIf="comentario.type == 1">{{ comentario.texto }}</p>
@@ -66,9 +66,15 @@
   </ion-grid>
 
   <ion-fab right bottom *ngIf="logged">
-    <button ion-fab color="secondary"><ion-icon name="menu"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab (click)="modalComentarioVideo()"><ion-icon name="videocam"></ion-icon></button>
+      <button ion-fab color="primary">
+        <ion-icon name="menu"></ion-icon>
+        <ion-label>Deje su comentario</ion-label>
+      </button>
+      
+    <ion-fab-list side="top">
+      <button ion-fab (click)="modalComentarioVideo()">
+        <ion-icon name="videocam"></ion-icon>
+      </button>
       <button ion-fab (click)="modalComentarioVoice()"><ion-icon name="mic"></ion-icon></button>
       <button ion-fab (click)="modalComentarioTexto()"><ion-icon name="quote"></ion-icon></button>
     </ion-fab-list>

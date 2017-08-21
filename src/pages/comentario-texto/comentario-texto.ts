@@ -16,7 +16,7 @@ export class ComentarioTextoPage {
   comments: FirebaseListObservable<any>;
   uidUser: string;
   articuloId: string;
-
+  pubId: string;
 
   constructor(private afDB: AngularFireDatabase, private toastCtrl: ToastController,
     public viewCtrl: ViewController,
@@ -27,25 +27,30 @@ export class ComentarioTextoPage {
 
     this.uidUser = this.navParams.get('uidUser');
     this.articuloId = this.navParams.get('articuloId');
-    console.log(this.uidUser, this.articuloId);
+    this.pubId = this.navParams.get('pubId');
   }
 
   cargarComentarioTexto(mensaje: string){
     if (!this.commentForm.valid){
         console.log(this.commentForm.value);
       } else {
+    var time = Date.now() / 1000 * -1;
     this.comments = this.afDB.list('/comentarios/' + this.articuloId);
     this.commentsUser = this.afDB.list('/user-comentarios/' + this.uidUser + '/' + this.articuloId);
     this.comments.push({
       aproved: false,
       texto: this.commentForm.value.comentario,
       type: 1,
+      timestamp: time,
+      parent: this.pubId,
       uid_user: this.uidUser
     }).then(result => {
       this.commentsUser.update(result.key, {
         aproved: false,
         texto: this.commentForm.value.comentario,
         type: 1,
+        timestamp: time,
+        parent: this.pubId,
         uid_user: this.uidUser
       }).then(resultado => {
         this.presentToast('Su comentario fue enviado con exito. A la espera de aprobación');

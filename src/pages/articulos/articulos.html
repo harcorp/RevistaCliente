@@ -42,7 +42,11 @@
               <ion-row>
                 <ion-col col-md-4 *ngFor="let item of items | async">
                   <ion-card>
-                    <img (click)="navigateToPublicacion(item.$key)" [attr.src]="item.thumbnail | url | async ">
+                      <ion-slides #slide1>
+                          <ion-slide *ngFor="let imagen of item.$key | slides | async">
+                              <img [attr.src]="imagen | url | async" />                                                                                          
+                          </ion-slide>
+                      </ion-slides>
                     <ion-card-content>
                       <ion-card-title>
                         {{ item.titulo }}
@@ -66,7 +70,11 @@
       </ion-col>
       <ion-col col-md-2 col-12>
         <ion-card>
-          <img src="https://firebasestorage.googleapis.com/v0/b/revista-digital-bb5d4.appspot.com/o/Banner-publicidad-compressor.png?alt=media&token=80aef896-1460-46fc-9eb1-911c237149ba">
+          <ion-slides #slide2>
+              <ion-slide *ngFor="let banner of banners | async">
+                <img [attr.src]="banner.image | url | async" />                                                                                          
+              </ion-slide>
+          </ion-slides>
         </ion-card>
       </ion-col>
     </ion-row>

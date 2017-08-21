@@ -85,17 +85,17 @@ export class ArticuloPage {
   }
 
   modalComentarioTexto(){
-    let modal = this.modalCtrl.create(ComentarioTextoPage, {uidUser: this.uidUser, articuloId: this.articuloId});
+    let modal = this.modalCtrl.create(ComentarioTextoPage, {uidUser: this.uidUser, articuloId: this.articuloId, pubId: this.pubId});
     modal.present();
   }
 
   modalComentarioVoice(){
-    let modal = this.modalCtrl.create(ComentarioVoicePage, {uidUser: this.uidUser, articuloId: this.articuloId});
+    let modal = this.modalCtrl.create(ComentarioVoicePage, {uidUser: this.uidUser, articuloId: this.articuloId, pubId: this.pubId});
     modal.present();
   }
 
   modalComentarioVideo(){
-    let modal = this.modalCtrl.create(ComentarioVideoPage, {uidUser: this.uidUser, articuloId: this.articuloId});
+    let modal = this.modalCtrl.create(ComentarioVideoPage, {uidUser: this.uidUser, articuloId: this.articuloId, pubId: this.pubId});
     modal.present();
   }
 

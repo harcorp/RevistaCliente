@@ -18,6 +18,7 @@ export class ComentarioVideoPage {
   grabando: boolean = false;
   grabado: boolean = false;
   uidUser: string;
+  pubId: string;
   comments: FirebaseListObservable<any>;
   commentsUser: FirebaseListObservable<any>;
   duracion: any;
@@ -36,6 +37,7 @@ export class ComentarioVideoPage {
 
       this.uidUser = this.navParams.get('uidUser');
       this.articuloId = this.navParams.get('articuloId');
+      this.pubId = this.navParams.get('pubId');
 
     let mediaConstraints = {
       video: {width: {exact: 320}, height: {exact: 240}},
@@ -135,6 +137,7 @@ export class ComentarioVideoPage {
       dismissOnPageChange: true
     });
     loader.present();
+    var time = Date.now() / 1000 * -1;
     let recordRTC = this.recordRTC;
     this.comments = this.afDB.list('/comentarios/' + this.articuloId);
     this.commentsUser = this.afDB.list('/user-comentarios/' + this.uidUser + '/' + this.articuloId);
@@ -145,13 +148,17 @@ export class ComentarioVideoPage {
       aproved: false,
       file: filename,
       type: 3,
-      uid_user: this.uidUser
+      uid_user: this.uidUser,
+      timestamp: time,
+      parent: this.pubId,
     }).then(result => {
       this.commentsUser.update(result.key, {
         aproved: false,
         file: filename,
         type: 3,
-        uid_user: this.uidUser
+        uid_user: this.uidUser,
+        timestamp: time,
+        parent: this.pubId,
       }).then(resultado => {
         loader.dismiss();
         this.presentToast('Su comentario en video fue enviado con exito. A la espera de aprobación');

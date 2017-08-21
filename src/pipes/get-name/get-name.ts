@@ -2,12 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/database';
 
-/**
- * Generated class for the GetNamePipe pipe.
- *
- * See https://angular.io/docs/ts/latest/guide/pipes.html for more info on
- * Angular Pipes.
- */
 @Pipe({
   name: 'getName',
 })
