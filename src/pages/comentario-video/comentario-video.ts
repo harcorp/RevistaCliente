@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
-import * as RecordRTC from 'recordrtc';
+import * as RecordRTC from 'recordrtc/recordrtc';
 import { AngularFireDatabase ,FirebaseListObservable } from "angularfire2/database";
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
@@ -96,16 +96,21 @@ export class ComentarioVideoPage {
         }
       });
       var options = {
-        mimeType: 'video/webm\;codecs=h264', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+        //mimeType: 'video/webm\;codecs=vp8', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+        mimeType: 'video/webm;codecs=vp8', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+        recorderType: RecordRTC.MediaStreamRecorder,
         audioBitsPerSecond: 64000,
         videoBitsPerSecond: 64000,
         bitsPerSecond: 64000 // if this line is provided, skip above two
       };
+
+
       this.recordRTC = RecordRTC(this.stream, options);
       this.recordRTC.setRecordingDuration(this.duration).onRecordingStopped(this.processVideo.bind(this));
       this.recordRTC.startRecording();
       let video: HTMLVideoElement = this.video.nativeElement;
       video.src = window.URL.createObjectURL(this.stream);
+
     }
   }
 

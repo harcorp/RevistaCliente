@@ -22,9 +22,9 @@
 <ion-content padding class="masters">
   <ion-grid>
     <ion-row>
-      <ion-col col-sm-12 col-md-10 >
+      <ion-col col-12 col-md-10 >
         <ion-row>
-          <ion-col col-md-3>
+          <ion-col col-md-3 col-12>
             <ion-card>
               <ion-card-content>
             <ion-title>Categorías <ion-icon small name="funnel"></ion-icon></ion-title>
@@ -37,11 +37,21 @@
               </ion-card-content>
             </ion-card>
           </ion-col>
-          <ion-col col-md-9>
+          <ion-col col-md-6 col-12>
+              <ion-card>
+                  <iframe width="100%" height="310" [src]="dato.videoId | youtube" frameborder="0" allowfullscreen>
+                    </iframe>
+              </ion-card>
+              <ion-card>
+                  <img [attr.src]="dato.imagen | url | async">
+                  <audio style="width: 100%" controlsList="nodownload" controls [attr.src]="dato.audio | url | async"></audio>                
+              </ion-card>
+            </ion-col>
+          <ion-col col-md-3>
             <ion-grid>
               <ion-row>
-                <ion-col col-md-4 *ngFor="let item of items | async">
-                  <ion-card>
+                <ion-col col-md-12 *ngFor="let item of items | async">
+                  <ion-card (click)="navigateToPublicacion(item.$key)">
                       <ion-slides #slide1>
                           <ion-slide *ngFor="let imagen of item.$key | slides | async">
                               <img [attr.src]="imagen | url | async" />                                                                                          
@@ -68,11 +78,13 @@
           </ion-col>
         </ion-row>
       </ion-col>
-      <ion-col col-md-2 col-12>
+      <ion-col col-md-2 col-8 offset-2>
         <ion-card>
           <ion-slides #slide2>
               <ion-slide *ngFor="let banner of banners | async">
-                <img [src]="banner.image | url | async"/>                                                                                          
+                <a [href]="banner.link" target="_blank">
+                  <img [src]="banner.image | url | async"/> 
+                </a>                                                                                         
               </ion-slide>
           </ion-slides>
         </ion-card>
@@ -80,3 +92,21 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="primary">
+      <ion-row>
+        <ion-col col-md-10 col-12>
+      <p class="text-white"> Transversal 29 No. 38 - 27 Barrio La Soledad | 
+        Teléfono: (57-1) 2695658 |
+        Bogotá - Colombia |
+        rev.planteamientoseneducacion@epe.edu.co</p>
+        </ion-col>
+        <ion-col col-md-1 col-6 class="logos">
+            <img src="assets/img/app-store.svg" />    
+        </ion-col>
+        <ion-col col-md-1 col-6 class="logos">
+            <img src="assets/img/google-play.png" />            
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>

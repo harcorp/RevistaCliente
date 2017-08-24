@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
-import * as RecordRTC from 'recordrtc/recordrtc.min';
+import * as RecordRTC from 'recordrtc/recordrtc';
 import { AngularFireDatabase ,FirebaseListObservable } from "angularfire2/database";
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';

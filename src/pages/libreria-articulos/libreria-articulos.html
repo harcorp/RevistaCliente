@@ -23,7 +23,7 @@
     <ion-col col-md-3 *ngFor="let articulo of articulos | async">
    <ion-card >
      <img [attr.src]="articulo.thumbnail | url | async" />
-     <ion-card-header>
+     <ion-card-header text-wrap>
         {{ articulo.nombre }}
      </ion-card-header>
       <ion-card-content>
@@ -46,3 +46,21 @@
     </ion-col>
   </ion-row>
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="primary">
+      <ion-row>
+        <ion-col col-md-10 col-12>
+      <p class="text-white"> Transversal 29 No. 38 - 27 Barrio La Soledad | 
+        Teléfono: (57-1) 2695658 |
+        Bogotá - Colombia |
+        rev.planteamientoseneducacion@epe.edu.co</p>
+        </ion-col>
+        <ion-col col-md-1 col-6 class="logos">
+            <img src="assets/img/app-store.svg" />    
+        </ion-col>
+        <ion-col col-md-1 col-6 class="logos">
+            <img src="assets/img/google-play.png" />            
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>
