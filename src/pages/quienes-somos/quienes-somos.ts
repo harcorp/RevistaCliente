@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from "../login/login";
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database'
 
 @IonicPage()
 @Component({
@@ -13,9 +14,12 @@ export class QuienesSomosPage {
   displayName: string;
   logged: boolean;
   uidUser: string;
+
+  datos: FirebaseObjectObservable<any>;
+  dato: string;
   
   constructor(public loadingCtrl: LoadingController, public modalCtrl: ModalController,
-    public afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth, public afDB: AngularFireDatabase,
     public navCtrl: NavController, public navParams: NavParams) {
 
     afAuth.authState.subscribe(user => {
@@ -28,6 +32,12 @@ export class QuienesSomosPage {
       this.displayName = user.displayName;
       this.logged = true;      
     });
+
+    this.datos = afDB.object('datos/quienesSomos', { preserveSnapshot: true});
+
+    this.datos.subscribe(v => {
+      this.dato = v.val();
+    })
   }
 
     

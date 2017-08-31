@@ -39,8 +39,12 @@ export class ComentarioVideoPage {
       this.articuloId = this.navParams.get('articuloId');
       this.pubId = this.navParams.get('pubId');
 
-    let mediaConstraints = {
+    /*let mediaConstraints = {
       video: {width: {exact: 320}, height: {exact: 240}},
+      audio: true,
+    };*/
+    let mediaConstraints = {
+      video: {width: {exact: 640}, height: {exact: 480}},
       audio: true,
     };
     navigator.mediaDevices
@@ -97,11 +101,9 @@ export class ComentarioVideoPage {
       });
       var options = {
         //mimeType: 'video/webm\;codecs=vp8', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
-        mimeType: 'video/webm;codecs=vp8', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
+        mimeType: 'video/webm;codecs=vp9', // or video/webm\;codecs=h264 or video/webm\;codecs=vp9
         recorderType: RecordRTC.MediaStreamRecorder,
-        audioBitsPerSecond: 64000,
-        videoBitsPerSecond: 64000,
-        bitsPerSecond: 64000 // if this line is provided, skip above two
+        //bitsPerSecond: 64000 // if this line is provided, skip above two
       };
 
 
@@ -148,7 +150,7 @@ export class ComentarioVideoPage {
     this.commentsUser = this.afDB.list('/user-comentarios/' + this.uidUser + '/' + this.articuloId);
     var recordedBlob = recordRTC.getBlob();
     var filename = '/videos/' + this.articuloId + '/' + UUID.UUID() + '.webm';
-    this.fb.storage().ref( filename).put(recordedBlob).then(resultado => {
+    this.fb.storage().ref(filename).put(recordedBlob).then(resultado => {
     this.comments.push({
       aproved: false,
       file: filename,
@@ -167,7 +169,6 @@ export class ComentarioVideoPage {
       }).then(resultado => {
         loader.dismiss();
         this.presentToast('Su comentario en video fue enviado con exito. A la espera de aprobación');
-        this.dismiss();
       });
     });
     });
