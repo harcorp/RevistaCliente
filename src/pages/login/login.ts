@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, 
+  NavController, 
+  NavParams, 
+  LoadingController, 
+  Loading, 
+  AlertController, 
+  ViewController, 
+  ToastController,
+  ModalController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { AngularFireAuth } from "angularfire2/auth";
 import {AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database'
 import * as firebase from 'firebase/app';
+import { SignupPage } from '../signup/signup';
 
 @IonicPage({
   segment: 'ingresar'
@@ -25,6 +34,7 @@ export class LoginPage {
         public authData: AuthProvider, public formBuilder: FormBuilder,
         public viewCtrl: ViewController, public afAuth: AngularFireAuth,
         public toastCtrl: ToastController,public afDB: AngularFireDatabase,
+        private modalCtrl: ModalController,
         public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
       this.loginForm = formBuilder.group({
@@ -105,6 +115,11 @@ export class LoginPage {
             });
         });
 
+  }
+
+  goToSignUp() {
+    let modal = this.modalCtrl.create(SignupPage);
+    modal.present();
   }
 
 }

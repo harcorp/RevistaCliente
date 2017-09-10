@@ -21,10 +21,10 @@
     <form [formGroup]="commentForm" (submit)="cargarComentarioTexto()" novalidate>
       <ion-item>
         <ion-label floating>Escriba su Comentario</ion-label>
-        <ion-input #comentario formControlName="comentario" type="text"></ion-input>
+        <ion-textarea #comentario formControlName="comentario" ></ion-textarea>
       </ion-item>
       <ion-item class="error-message" *ngIf="!commentForm.controls.comentario.valid">
-        <p>Su comentario no puede contener mas de 255 caracteres</p>
+        <p>Su comentario no puede contener mas de 3533 caracteres</p>
       </ion-item>
       <div padding>
       <button ion-button block>Comentar</button>

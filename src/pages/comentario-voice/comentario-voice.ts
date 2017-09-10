@@ -24,7 +24,7 @@ export class ComentarioVoicePage {
 
   private stream: MediaStream;
   private recordRTC: any;
-  duration: number = 60 * 1000;
+  duration: number = 180 * 1000;
   reaming: number = this.duration;
   @ViewChild('audio') audio;
 

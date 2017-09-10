@@ -27,7 +27,7 @@ export class ComentarioVideoPage {
   private stream: MediaStream;
   private recordRTC: any;
   readyToRecord: boolean = false;
-  duration: number = 15 * 1000;
+  duration: number =  180 * 1000;
   reaming: number = this.duration;
   @ViewChild('video') video;
 
@@ -93,8 +93,8 @@ export class ComentarioVideoPage {
     if(this.readyToRecord){
       this.grabando = true;
       this.timer = TimerObservable.create(0, 1000).subscribe(t => { 
-        if(t <= 15 && this.grabando){
-          this.duracion = "15:" + t;
+        if(t <= 180 && this.grabando){
+          this.duracion = "180:" + t;
         }else{
           this.timer = null;
         }
