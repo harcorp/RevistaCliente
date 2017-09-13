@@ -1,20 +1,26 @@
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
     <ion-title>Planteamientos</ion-title>
     <ion-buttons end>
-      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
-        <ion-icon name="person"></ion-icon>
-      </button>
-      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged" icon-only>
-        <ion-icon name="exit"></ion-icon>
-      </button>
+      <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
+        color="royal" class="social">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+      <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a>
+      <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
+          <ion-icon name="person"></ion-icon>
+        </button>
+      <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
+          <ion-icon name="exit"></ion-icon>
+        </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 
 <ion-content padding class="masters">
   <ion-grid>
@@ -30,19 +36,19 @@
               Comentarios
             </ion-card-title>
           </ion-card-header>
-          
+
           <ion-card-content>
             <ion-list>
               <ion-item *ngFor="let comentario of comentarios | async">
-                  <h2>{{ comentario.uid_user | getName | async }}</h2>
-                  <p text-wrap *ngIf="comentario.type == 1">{{ comentario.texto }}</p>
-                  <p *ngIf="comentario.type == 2">
-                    <audio controlsList="nodownload" controls [attr.src]="comentario.file | url | async"></audio>
-                  </p>
-                  <p *ngIf="comentario.type == 3">
-                    <video controlsList="nodownload" width="320" height="240" [attr.src]="comentario.file | url | async" controls>
-                    </video>
-                  </p>
+                <h2>{{ comentario.uid_user | getName | async }}</h2>
+                <p text-wrap *ngIf="comentario.type == 1">{{ comentario.texto }}</p>
+                <p *ngIf="comentario.type == 2">
+                  <audio controlsList="nodownload" controls [attr.src]="comentario.file | url | async"></audio>
+                </p>
+                <p *ngIf="comentario.type == 3">
+                  <video controlsList="nodownload" width="320" height="240" [attr.src]="comentario.file | url | async" controls>
+                  </video>
+                </p>
               </ion-item>
             </ion-list>
           </ion-card-content>
@@ -52,10 +58,10 @@
         <ion-card>
           <img [attr.src]="(articulo | async)?.thumbnail | url | async">
           <ion-card-content>
-              <ion-card-title>
-                {{ (articulo | async)?.titulo }}
-              </ion-card-title>
-              <p>{{ (articulo | async)?.descripcion }}
+            <ion-card-title>
+              {{ (articulo | async)?.titulo }}
+            </ion-card-title>
+            <p>{{ (articulo | async)?.descripcion }}
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -63,11 +69,11 @@
   </ion-grid>
 
   <ion-fab right bottom *ngIf="logged">
-      <button ion-fab color="primary">
+    <button ion-fab color="primary">
         <ion-icon name="menu"></ion-icon>
         <ion-label>Deje su comentario</ion-label>
       </button>
-      
+
     <ion-fab-list side="top">
       <button ion-fab (click)="modalComentarioVideo()">
         <ion-icon name="videocam"></ion-icon>
@@ -78,21 +84,22 @@
   </ion-fab>
 </ion-content>
 <ion-footer>
-    <ion-toolbar color="primary">
-      <ion-row>
-        <ion-col col-md-10 col-12>
-      <p class="text-white"> Transversal 29 No. 38 - 27 Barrio La Soledad | 
-        Teléfono: (57-1) 2695658 |
-        Bogotá - Colombia |
-        rev.planteamientoseneducacion@epe.edu.co | 
-        <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a></p>
-        </ion-col>
-        <ion-col col-md-1 col-6 class="logos">
-            <img src="assets/img/app-store.svg" />    
-        </ion-col>
-        <ion-col col-md-1 col-6 class="logos">
-            <img src="assets/img/google-play.png" />            
-        </ion-col>
-      </ion-row>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col col-md-10 col-12>
+        <p class="text-white"> Tv. 29 No. 38 - 27 Barrio La Soledad | Teléfono: (57-1) 2695658 | Bogotá - Colombia | rev.planteamientoseneducacion@epe.edu.co
+          |
+          <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
+        </p>
+      </ion-col>
+      <ion-col col-md-1 col-6 class="logos">
+        <img src="assets/img/app-store.svg" />
+      </ion-col>
+      <ion-col col-md-1 col-6 class="logos">
+        <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
+        <img src="assets/img/google-play.png" />
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,16 +1,23 @@
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>Planteamientos</ion-title>
     <ion-buttons end>
-      <button ion-button icon-left color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
-        <ion-icon name="person"></ion-icon>
-      </button>
-      <button ion-button icon-left color="royal" (click)="signOut()" *ngIf="logged" icon-only>
-        <ion-icon name="exit"></ion-icon>
-      </button>
+      <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
+        color="royal" class="social">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+      <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a>
+      <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
+            <ion-icon name="person"></ion-icon>
+          </button>
+      <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
+            <ion-icon name="exit"></ion-icon>
+          </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -43,21 +50,22 @@
   </ion-grid>
 </ion-content>
 <ion-footer>
-    <ion-toolbar color="primary">
-      <ion-row>
-        <ion-col col-md-10 col-12>
-      <p class="text-white"> Transversal 29 No. 38 - 27 Barrio La Soledad | 
-        Teléfono: (57-1) 2695658 |
-        Bogotá - Colombia |
-        rev.planteamientoseneducacion@epe.edu.co | 
-        <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a></p>
-        </ion-col>
-        <ion-col col-md-1 col-6 class="logos">
-            <img src="assets/img/app-store.svg" />    
-        </ion-col>
-        <ion-col col-md-1 col-6 class="logos">
-            <img src="assets/img/google-play.png" />            
-        </ion-col>
-      </ion-row>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col col-md-10 col-12>
+        <p class="text-white"> Tv. 29 No. 38 - 27 Barrio La Soledad | Teléfono: (57-1) 2695658 | Bogotá - Colombia | rev.planteamientoseneducacion@epe.edu.co
+          |
+          <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
+        </p>
+      </ion-col>
+      <ion-col col-md-1 col-6 class="logos">
+        <img src="assets/img/app-store.svg" />
+      </ion-col>
+      <ion-col col-md-1 col-6 class="logos">
+        <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
+        <img src="assets/img/google-play.png" />
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
