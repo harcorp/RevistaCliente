@@ -3,4 +3,5 @@ export class Datos{
     audio: string;
     imagen: string;
     numComments: number;
+    texto: string;
 }
