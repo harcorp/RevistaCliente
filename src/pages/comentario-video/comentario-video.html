@@ -18,7 +18,7 @@
     <ion-card>
       <ion-card-content text-center>
         <video #video class="video" muted autoplay></video>
-        <button ion-button color="primary" (click)="startRecording()" icon-left *ngIf="!grabando && !grabado"> <ion-icon name="mic"></ion-icon> Grabar </button>
+        <button ion-button color="primary" (click)="capturaVideo()" icon-left *ngIf="!grabando && !grabado"> <ion-icon name="mic"></ion-icon> Grabar </button>
         <button ion-button color="primary" (click)="volverCargar()" icon-left *ngIf="!grabando && grabado"> <ion-icon name="mic"></ion-icon>Volver Grabar </button>
         <button ion-button color="primary"(click) ="stopRecording()" *ngIf="grabando"> Detener</button>
         <button ion-button color="primary" (click)="upload()" *ngIf="grabado"> Cargar</button>

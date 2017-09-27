@@ -30,9 +30,7 @@
             Quienes Somos
           </ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-          <p> {{ dato }} </p>
-        </ion-card-content>
+          <img [attr.src]="dato | url | async" alt="Quienes Somos" >
       </ion-card>
     </ion-col>
   </ion-row>

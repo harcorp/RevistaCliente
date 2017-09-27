@@ -1,3 +1,4 @@
+import { MediaCapture } from '@ionic-native/media-capture';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, enableProdMode } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -47,7 +48,7 @@ export const firebaseConfig = {
     SignupPage,
     ComentarioTextoPage,
     ComentarioVoicePage,
-    ComentarioVideoPage
+    ComentarioVideoPage,
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
