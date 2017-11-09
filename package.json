@@ -22,7 +22,6 @@
         "@angular/platform-browser-dynamic": "4.1.3",
         "@ionic-native/core": "^3.12.1",
         "@ionic-native/google-plus": "^4.1.0",
-        "@ionic-native/media-capture": "^4.2.1",
         "@ionic-native/splash-screen": "3.12.1",
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
@@ -46,7 +45,11 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "2.1.3",
+<<<<<<< HEAD
         "ionic": "3.14.0",
+=======
+        "ionic": "3.10.3",
+>>>>>>> parent of e5feebb... 1.1.0
         "recordrtc": "^5.4.2",
         "typescript": "2.3.4"
     },

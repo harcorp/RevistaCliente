@@ -6,7 +6,6 @@ import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
 import { UUID } from 'angular2-uuid';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { MediaCapture, MediaFile, CaptureVideoOptions, CaptureError } from '@ionic-native/media-capture';
 
 @IonicPage()
 @Component({
@@ -24,7 +23,6 @@ export class ComentarioVideoPage {
   commentsUser: FirebaseListObservable<any>;
   duracion: any;
   timer: any;
-  nativepath: any;
 
   private stream: MediaStream;
   private recordRTC: any;
@@ -34,7 +32,7 @@ export class ComentarioVideoPage {
   @ViewChild('video') video;
 
   constructor(private toastCtrl: ToastController, private fb: FirebaseApp, private afDB: AngularFireDatabase,
-     private loadingCtrl: LoadingController, private mediaCapture: MediaCapture,
+     private loadingCtrl: LoadingController,
     public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 
       this.uidUser = this.navParams.get('uidUser');
@@ -66,22 +64,6 @@ export class ComentarioVideoPage {
     video.muted = !video.muted;
     video.controls = !video.controls;
     video.autoplay = !video.autoplay;
-  }
-
-  capturaVideo(){
-    let options: CaptureVideoOptions = {
-      limit: 1,
-      duration: 120
-    }
-
-    this.mediaCapture.captureVideo(options).then((mediaFiles: MediaFile[]) => {
-      this.nativepath = mediaFiles[0].fullPath;
-      this.presentToast(this.nativepath);
-     // this.upload();
-    }, (err: CaptureError) => {
-      if(err.code == "3")
-      this.presentToast("No se grabo ningun audio.");
-    });
   }
 
   successCallback(stream: MediaStream) {

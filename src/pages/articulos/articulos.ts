@@ -30,6 +30,7 @@ export class ArticulosPage {
   @ViewChild('slide1') slide1: Slides;
   @ViewChild('slide2') slide2: Slides;
   
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, afDB: AngularFireDatabase,
               public afAuth: AngularFireAuth, private modalCtrl: ModalController,
               public firebaseApp: FirebaseApp, public loadingCtrl: LoadingController) {
@@ -71,7 +72,7 @@ export class ArticulosPage {
   ionViewDidEnter(){
     setTimeout(() => {
       this.update();
-    }, 7000);
+    }, 6000);
   }
   
   update(){
