@@ -53,6 +53,7 @@ export const firebaseConfig = {
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
+    MediaCapture
   ],
 })
 export class AppModule {}
