@@ -117,5 +117,10 @@ export class LoginPage {
 
   }
 
+  goToSignUp() {
+    let modal = this.modalCtrl.create(SignupPage);
+    modal.present();
+  }
+
 
 }
