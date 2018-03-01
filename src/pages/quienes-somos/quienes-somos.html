@@ -1,29 +1,29 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Planteamientos en Educación</ion-title>
+    <ion-buttons end>
+      <a ion-button only-icon>
+        <img src="assets/img/logo_epe.png" width="32px" />
+      </a>
+      <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
+        color="royal" class="social">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+      <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a>
+      <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only>
+        <ion-icon name="person"></ion-icon>
       </button>
-      <ion-title>Planteamientos en Educación</ion-title>
-      <ion-buttons end>
-        <a ion-button only-icon>
-          <img src="assets/img/logo_epe.png" width="32px" />
-        </a>
-        <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
-          color="royal" class="social">
-          <ion-icon name="logo-facebook"></ion-icon>
-        </a>
-        <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
-          <ion-icon name="logo-twitter"></ion-icon>
-        </a>
-        <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
-          <ion-icon name="person"></ion-icon>
-        </button>
-        <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
-          <ion-icon name="exit"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
+      <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 <ion-content padding class="masters">
   <ion-row>
     <ion-col col-md-8 offset-md-2 col-12>
@@ -33,9 +33,7 @@
             Quienes Somos
           </ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-          <p> {{ dato }} </p>
-        </ion-card-content>
+        <img [attr.src]="dato | url | async" />
       </ion-card>
     </ion-col>
   </ion-row>
@@ -54,7 +52,7 @@
       </ion-col>
       <ion-col col-md-1 col-6 class="logos">
         <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
-        <img src="assets/img/google-play.png" />
+          <img src="assets/img/google-play.png" />
         </a>
       </ion-col>
     </ion-row>

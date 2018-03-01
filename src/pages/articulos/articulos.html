@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Planteamientos</ion-title>
+    <ion-title>Planteamientos en Educación</ion-title>
     <ion-buttons end>
       <a ion-button only-icon>
         <img src="assets/img/logo_epe.png" width="32px" />
@@ -53,18 +53,15 @@
               </ion-card-content>
 
             </ion-card>
+            <img src="assets/img/logo_epe.png">
           </ion-col>
-          <ion-col col-md-9 col-12>
-            <ion-card>
-              <iframe width="100%" height="310" [src]="dato.videoId | youtube" frameborder="0" allowfullscreen>
-              </iframe>
-            </ion-card>
-
-          </ion-col>
-          <ion-col col-md-9 offset-md-3>
+          <ion-col col-md-3>
             <ion-grid>
               <ion-row>
-                <ion-col col-md-4 col-12 *ngFor="let item of items | async">
+                <ion-col>
+                  <h1>Ediciones</h1>
+                </ion-col>
+                <ion-col col-12 *ngFor="let item of items | async">
                   <ion-card (click)="navigateToPublicacion(item.$key)">
                     <ion-slides #slide1>
                       <ion-slide *ngFor="let imagen of item.$key | slides | async">
@@ -90,6 +87,21 @@
               </ion-row>
             </ion-grid>
           </ion-col>
+
+          
+          <ion-col class="proxima" col-md-6 col-12>
+            <ion-card>
+              <img [attr.src]="dato.imagen2 | url | async" />
+            </ion-card>
+          </ion-col>
+
+          <ion-col col-md-9 offset-md-3>
+            <ion-card>
+              <iframe width="100%" height="310" [src]="dato.videoId | youtube" frameborder="0" allowfullscreen>
+              </iframe>
+            </ion-card>
+          </ion-col>
+
         </ion-row>
       </ion-col>
       <ion-col col-md-2 offset-md-0 col-8 offset-2>

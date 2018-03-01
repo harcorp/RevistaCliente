@@ -1,26 +1,29 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Planteamientos</ion-title>
-    <ion-buttons end>
-      <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
-        color="royal" class="social">
-        <ion-icon name="logo-facebook"></ion-icon>
-      </a>
-      <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </a>
-      <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only> 
+      <ion-title>Planteamientos en Educación</ion-title>
+      <ion-buttons end>
+        <a ion-button only-icon>
+          <img src="assets/img/logo_epe.png" width="32px" />
+        </a>
+        <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
+          color="royal" class="social">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only>
           <ion-icon name="person"></ion-icon>
         </button>
-      <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
+        <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
           <ion-icon name="exit"></ion-icon>
         </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content padding class="masters">
   <ion-grid>
