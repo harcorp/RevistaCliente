@@ -5,7 +5,7 @@
     </button>
     <ion-title>Planteamientos en Educación</ion-title>
     <ion-buttons end>
-      <a ion-button only-icon>
+      <a ion-button only-icon target="_blank" href="http://epe.edu.co">
         <img src="assets/img/logo_epe.png" width="32px" />
       </a>
       <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
@@ -24,6 +24,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding class="masters">
   <ion-row>
     <ion-col col-md-8 offset-md-2 col-12>
@@ -33,7 +34,12 @@
             Quienes Somos
           </ion-card-title>
         </ion-card-header>
-        <img [attr.src]="dato | url | async" />
+        <img [attr.src]="dato | url | async" usemap="#image-map">
+        <map name="image-map">
+          <area target="_blank" alt="" title="" href="http://www.corporacionepe.org/" coords="110,905,291,1025" shape="rect">
+          <area target="_blank" alt="" title="" href="http://www.epe.edu.co/" coords="107,751,290,893" shape="rect">
+          <area target="" alt="" title="" href="mailto:revistaplanteamientoseneducacion@epe.edu.co" coords="528,615,835,632" shape="rect">
+        </map>
       </ion-card>
     </ion-col>
   </ion-row>

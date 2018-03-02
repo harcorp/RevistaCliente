@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from "../login/login";
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database'
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import 'image-map-resizer';
+
+declare var jquery:any;
+declare var $ :any;
+
 
 @IonicPage()
 @Component({
@@ -17,11 +22,12 @@ export class QuienesSomosPage {
 
   datos: FirebaseObjectObservable<any>;
   dato: string;
+  markers: number[][] =[[19,75], [20,90]];
   
   constructor(public loadingCtrl: LoadingController, public modalCtrl: ModalController,
     public afAuth: AngularFireAuth, public afDB: AngularFireDatabase,
     public navCtrl: NavController, public navParams: NavParams) {
-
+      
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.displayName = null;
@@ -40,7 +46,10 @@ export class QuienesSomosPage {
     })
   }
 
-    
+  onChange(marker) {
+    console.log('Marker', marker);
+  }
+
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Cargando...",
@@ -61,6 +70,13 @@ export class QuienesSomosPage {
   goToLogin() {
     let modal = this.modalCtrl.create(LoginPage);
     modal.present();
+  }
+
+  ionViewDidLoad(){
+    $(document).ready(function() {
+      console.log('entro');
+      $('map').imageMapResize();
+  });
   }
 
 }

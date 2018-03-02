@@ -5,7 +5,7 @@
     </button>
     <ion-title>Planteamientos en Educación</ion-title>
     <ion-buttons end>
-      <a ion-button only-icon>
+      <a ion-button only-icon target="_blank" href="http://epe.edu.co">
         <img src="assets/img/logo_epe.png" width="32px" />
       </a>
       <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
@@ -42,12 +42,15 @@
               <ion-icon name="download"></ion-icon>
               <div>ADQUIRIR</div>
             </a>
-            <a ion-button clear small icon-left [href]="articulo.file | url | async" download="proposed_file_name" *ngIf="!articulo.url">
+            <a ion-button clear target="_blank" small icon-left [href]="articulo.file | url | async" *ngIf="!articulo.url">
               <ion-icon name="download"></ion-icon>
               <div>ADQUIRIR</div>
             </a>
           </ion-col>
-          <ion-col center text-center>
+          <ion-col center text-right>
+            <ion-note *ngIf="articulo.autor">
+              Autor: {{ articulo.autor }} |
+            </ion-note>
             <ion-note>
               {{ articulo.type }} - {{ articulo.fecha * -1000 | date }}
             </ion-note>
