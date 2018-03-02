@@ -38,7 +38,11 @@
         </ion-card-content>
         <ion-row>
           <ion-col>
-            <a ion-button clear small icon-left [href]="articulo.url">
+            <a ion-button clear target="_blank" small icon-left [href]="articulo.url" *ngIf="articulo.url">
+              <ion-icon name="download"></ion-icon>
+              <div>ADQUIRIR</div>
+            </a>
+            <a ion-button clear small icon-left [href]="articulo.file | url | async" download="proposed_file_name" *ngIf="!articulo.url">
               <ion-icon name="download"></ion-icon>
               <div>ADQUIRIR</div>
             </a>
