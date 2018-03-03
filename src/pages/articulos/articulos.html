@@ -66,6 +66,7 @@
                 <ion-col col-12 *ngFor="let item of items | async">
                   <ion-card (click)="navigateToPublicacion(item.$key)">
                     <ion-slides #slide1>
+                      <ion-slide ></ion-slide>
                       <ion-slide *ngFor="let imagen of item.$key | slides | async">
                         <img [attr.src]="imagen | url | async" />
                       </ion-slide>
@@ -109,12 +110,15 @@
       <ion-col col-md-2 offset-md-0 col-8 offset-2>
         <ion-card>
           <ion-slides #slide2>
+            <ion-slide>
+            </ion-slide>
             <ion-slide *ngFor="let banner of banners | async">
               <a [href]="banner.link" target="_blank">
-                <img [src]="banner.image | url | async" />
+                <img [src]="banner.imageURL" />
               </a>
             </ion-slide>
           </ion-slides>
+
         </ion-card>
       </ion-col>
     </ion-row>

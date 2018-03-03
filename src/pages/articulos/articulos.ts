@@ -51,7 +51,7 @@ export class ArticulosPage {
       query: {
         equalTo: '1',
         orderByChild: 'type'
-      },
+      }
     });
 
     afAuth.authState.subscribe(user => {
@@ -72,7 +72,7 @@ export class ArticulosPage {
   ionViewDidEnter(){
     setTimeout(() => {
       this.update();
-    }, 6000);
+    }, 2000);
   }
   
   update(){
