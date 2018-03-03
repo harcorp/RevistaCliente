@@ -38,11 +38,15 @@
         </ion-card-content>
         <ion-row>
           <ion-col>
-            <a ion-button clear target="_blank" small icon-left [href]="articulo.url" *ngIf="!articulo.url">
+            <a ion-button clear target="_blank" small icon-left [href]="articulo.url" *ngIf="articulo.url && !articulo.file">
               <ion-icon name="download"></ion-icon>
               <div>ADQUIRIR</div>
             </a>
-            <a ion-button clear target="_blank" small icon-left [href]="articulo.file | url | async" *ngIf="articulo.url">
+            <a ion-button clear target="_blank" small icon-left [href]="articulo.file | url | async" *ngIf="!articulo.url">
+              <ion-icon name="download"></ion-icon>
+              <div>ADQUIRIR</div>
+            </a>
+            <a ion-button clear target="_blank" small icon-left [href]="articulo.file | url | async" *ngIf="articulo.url && articulo.file">
               <ion-icon name="download"></ion-icon>
               <div>ADQUIRIR</div>
             </a>
