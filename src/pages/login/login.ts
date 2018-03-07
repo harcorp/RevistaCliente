@@ -45,7 +45,6 @@ export class LoginPage {
 
   loginUser(){
       if (!this.loginForm.valid){
-        console.log(this.loginForm.value);
       } else {
         this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then( authData => {
@@ -68,7 +67,7 @@ export class LoginPage {
         this.loading = this.loadingCtrl.create({
           dismissOnPageChange: true,
         });
-        this.loading.present();
+        // this.loading.present();
       }
   }
 
