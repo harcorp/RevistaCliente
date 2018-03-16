@@ -1,3 +1,25 @@
 page-articulos {
-
+  .indi {
+    background-color: color($colors, primary);
+    font-size: 2.5rem;
+    color: white;
+    padding: 10px;
+  }
+  .indice {
+    background: none;
+    .item-inner {
+      border-bottom: 0px !important;
+      .label-md {
+        line-height: 1 !important;
+        margin: 8px !important;
+      }
+    }
+    .titulo {
+      font-weight: bold;
+    }
+    .author {
+      font-size: 10px;
+      color: color($colors, primary);
+    }
+  }
 }
