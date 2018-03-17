@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,34 +12,62 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 .card-title-md {
-    font-size: 2.1rem !important;
-}
-.masters{
-       background-color: color($colors, fondo)
+  font-size: 2.1rem !important;
 }
 
-.logo_slide{
-    background-color: color($colors, primary);
-}
-.menu_logo{
-    padding: 40px;
+.masters {
+  background-color: color($colors, fondo);
+  margin-top: 115px;
 }
 
-.logos{
-    margin: 6px 0;
+.logo_slide {
+  background-color: color($colors, primary);
 }
 
-.text-white{
-    color: color($colors, light);
+.menu_logo {
+  padding: 40px;
 }
 
-.doinmedia{
-    color: #fff;
-    text-decoration: none;
+.logos {
+  margin: 6px 0;
 }
 
-.social{
-    font-size: 2.5rem;
+.text-white {
+  color: color($colors, light);
+}
+
+.doinmedia {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social {
+  font-size: 2.5rem;
+}
+
+ion-header {
+  top: 60px !important;
+}
+
+.logo {
+  width: 100%;
+  background-color: #fff;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  z-index: 999;
+}
+
+.logo_header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+  top: 10px;
+  z-index: 1000;
 }

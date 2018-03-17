@@ -1,30 +1,52 @@
-<ion-menu [content]="content" type="reveal">
-  <ion-header>
-    <ion-toolbar color="primary" class="menu_logo">
-      <img src="assets/img/logo_white.png" />
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <ion-list no-lines>
-      <button menuClose ion-item (click)="goHome()">
-        <ion-icon name="home" item-start></ion-icon>Inicio
+<div class="logo">
+  <div class="logo_header">
+    <img src="assets/img/logo.png" />
+  </div>
+</div>
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons text-center>
+      <button ion-button *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
       </button>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon [name]="p.icon" item-start></ion-icon>{{p.title}}
+    </ion-buttons>
+    <!--     <ion-buttons end>
+      <a ion-button only-icon target="_blank" href="http://epe.edu.co">
+        <img src="assets/img/logo_epe.png" width="32px" />
+      </a>
+      <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
+        color="royal" class="social">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a>
+      <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a>
+      <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only>
+        <ion-icon name="person"></ion-icon>
       </button>
-    </ion-list>
-    <ion-list no-lines>
-      <ion-list-header>
-        Más
-      </ion-list-header>
-      <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
-        <ion-icon [name]="p.icon" item-start></ion-icon>{{p.title}}
+      <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
+        <ion-icon name="exit"></ion-icon>
       </button>
-    </ion-list>
-  </ion-content>
-
-</ion-menu>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-footer>
+    <ion-toolbar color="primary">
+      <ion-row>
+        <ion-col col-md-11 col-12>
+          <p class="text-white"> Tv. 29 No. 38 - 27 Barrio La Soledad | Teléfono: (57-1) 2695658 | Bogotá - Colombia | rev.planteamientoseneducacion@epe.edu.co
+            |
+            <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
+          </p>
+        </ion-col>
+        <ion-col col-md-1 col-6 class="logos" end>
+          <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
+            <img src="assets/img/google-play.png" />
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>

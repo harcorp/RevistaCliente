@@ -17,6 +17,7 @@ import { Datos } from "../../models/Datos";
 export class ArticulosPage {
 
   items: FirebaseListObservable<any[]>;
+  principal: any;
   categorias: FirebaseListObservable<any[]>;
   banners: FirebaseListObservable<any[]>;
   dato: Datos = new Datos;
@@ -27,13 +28,12 @@ export class ArticulosPage {
   uidUser: string;
   logged: boolean;
 
-  @ViewChild('slide1') slide1: Slides;
   @ViewChild('slide2') slide2: Slides;
-  
-  
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, afDB: AngularFireDatabase,
-              public afAuth: AngularFireAuth, private modalCtrl: ModalController,
-              public firebaseApp: FirebaseApp, public loadingCtrl: LoadingController) {
+    public afAuth: AngularFireAuth, private modalCtrl: ModalController,
+    public firebaseApp: FirebaseApp, public loadingCtrl: LoadingController) {
 
     this.sizeSubject = new BehaviorSubject(undefined);
     this.datos = afDB.object('/datos', { preserveSnapshot: true });
@@ -57,48 +57,41 @@ export class ArticulosPage {
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.displayName = null;
-        this.logged = false;        
+        this.logged = false;
         return;
       }
       this.uidUser = user.uid;
       this.displayName = user.displayName;
-      this.logged = true;      
+      this.logged = true;
     });
-    
-    this.categorias = afDB.list('/category_pub');    
+
+    this.categorias = afDB.list('/category_pub');
 
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     setTimeout(() => {
       this.update();
-    }, 2000);
+    }, 3000);
   }
-  
-  update(){
-      this.slide1.update();  
-      this.slide1.autoplay = 3000;      
-      this.slide1.loop = true;
-      this.slide1.startAutoplay();  
-      
-      
-      this.slide2.update();  
-      this.slide2.loop = true;
-      this.slide2.autoplay = 4000;
-      this.slide2.startAutoplay(); 
-      
+
+  update() {
+    this.slide2.update();
+    this.slide2.loop = true;
+    this.slide2.autoplay = 4000;
+    this.slide2.startAutoplay();
   }
 
   filterBy(size: any) {
-    this.sizeSubject.next(size); 
-    setTimeout(() => {  
+    this.sizeSubject.next(size);
+    setTimeout(() => {
       this.update();
     }, 6000);
   }
 
-  navigateToPublicacion(pubId: string){
+  navigateToPublicacion(pubId: string, articuloId: string) {
     this.presentLoading();
-    this.navCtrl.push('PublicacionPage', { pubId });
+    this.navCtrl.push('ArticuloPage', { articuloId, pubId});
   }
 
   presentLoading() {
@@ -109,7 +102,7 @@ export class ArticulosPage {
     loader.present();
   }
 
-  goToSignUp(){
+  goToSignUp() {
     let modal = this.modalCtrl.create(SignupPage);
     modal.present();
   }

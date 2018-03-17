@@ -14,13 +14,29 @@ export class SlidesPipe implements PipeTransform {
   transform(value, args) {
     return new Promise(resolve => {
       let keys = [];
-      this.fb.database().ref('/articulos/' + value).once('value')
-        .then(v => {
-          v.forEach(element => {
-            keys.push(element.val().thumbnail);
+      if(args !== undefined){
+        this.fb.database().ref('/articulos/' + value).orderByChild('stack').equalTo(args).once('value', (snapshot) => {
+          snapshot.forEach((snap) => {
+            keys.push({
+              $key: snap.key,
+              $value: snap.val()
+            });
+            return false;
           });
           resolve(keys);
         });
+      } else {
+        this.fb.database().ref('/articulos/' + value).once('value', (snapshot) => {
+          snapshot.forEach((snap) => {
+            keys.push({
+              $key: snap.key,
+              $value: snap.val()
+            });
+            return false;
+          });
+          resolve(keys);
+        });
+      }
     });
   } 
 }

@@ -1,110 +1,101 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Planteamientos en Educación</ion-title>
-    <ion-buttons end>
-      <a ion-button only-icon target="_blank" href="http://epe.edu.co">
-        <img src="assets/img/logo_epe.png" width="32px" />
-      </a>
-      <a href="https://www.facebook.com/Revista-Planteamientos-En-Educación-353670338419375/" target="_blank" ion-button only-icon
-        color="royal" class="social">
-        <ion-icon name="logo-facebook"></ion-icon>
-      </a>
-      <a href="https://twitter.com/rplanteamientos" target="_blank" ion-button only-icon color="royal" class="social">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </a>
-      <button ion-button color="royal" (click)="goToLogin()" *ngIf="!logged" icon-only>
-        <ion-icon name="person"></ion-icon>
-      </button>
-      <button ion-button color="royal" (click)="signOut()" *ngIf="logged" icon-only>
-        <ion-icon name="exit"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-
 <ion-content padding class="masters">
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-md-10>
         <ion-row>
           <ion-col col-md-3 col-12>
-            <ion-card>
-              <ion-card-content>
-                <ion-title>Categorías
-                  <ion-icon small name="funnel"></ion-icon>
-                </ion-title>
-                <ion-list no-lines>
-                  <button ion-item (click)="filterBy(undefined)">Sin Filtro</button>
-                  <button ion-item *ngFor="let categoria of categorias | async" (click)="filterBy(categoria.$key)">
-                    {{ categoria.nombre }}
-                  </button>
-                </ion-list>
-              </ion-card-content>
-            </ion-card>
-            <ion-card>
-              <img [attr.src]="dato.imagen | url | async">
-              <audio style="width: 100%" controlsList="nodownload" controls [attr.src]="dato.audio | url | async"></audio>
-              <ion-card-content>
-                <p>{{ dato.texto }}</p>
-              </ion-card-content>
-
-            </ion-card>
-            <a target="_blank" href="http://epe.edu.co">
-              <img src="assets/img/logo_epe.png">
-            </a>
-          </ion-col>
-          <ion-col col-md-3>
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <h1>Ediciones</h1>
-                </ion-col>
-                <ion-col col-12 *ngFor="let item of items | async">
-                  <ion-card (click)="navigateToPublicacion(item.$key)">
-                    <ion-slides #slide1>
-                      <ion-slide ></ion-slide>
-                      <ion-slide *ngFor="let imagen of item.$key | slides | async">
-                        <img [attr.src]="imagen | url | async" />
-                      </ion-slide>
-                    </ion-slides>
-                    <ion-card-content>
-                      <ion-card-title>
-                        {{ item.titulo }}
-                      </ion-card-title>
-                      <p>{{ item.descripcion }}</p>
-                    </ion-card-content>
-                    <ion-row no-padding>
-                      <ion-col>
-                        <button ion-button clear medium color="danger" icon-start (click)="navigateToPublicacion(item.$key)">
-                          <ion-icon name='arrow-forward'></ion-icon>
-                          Ver Más
-                        </button>
+            <ion-row>
+              <ion-col class="indi">
+                ÍNDICE
+              </ion-col>
+              <ion-col col-md-12 *ngFor="let item of items | async">
+                <ion-list>
+                  <div ion-item class="indice" text-wrap *ngFor="let articulo of item.$key | slides | async">
+                    <ion-row (click)="navigateToPublicacion(item.$key, articulo.$key)">
+                      <ion-col col-md-2>
+                        <ion-icon name="videocam"></ion-icon>
+                      </ion-col>
+                      <ion-col col-md-10>
+                        <span class="titulo">{{ articulo.$value.titulo }}</span>
+                        <br>
+                        <span class="author">{{ articulo.$value.author }}</span>
                       </ion-col>
                     </ion-row>
+                  </div>
+                </ion-list>
+              </ion-col>
+              <ion-col col-md-12>
+                <ion-card>
+                  <img [attr.src]="dato.imagen | url | async">
+                  <audio style="width: 100%" controlsList="nodownload" controls [attr.src]="dato.audio | url | async"></audio>
+                  <ion-card-content>
+                    <p>{{ dato.texto }}</p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-md-12>
+                <ion-card>
+                  <iframe width="100%" height="180px" [src]="dato.videoId | youtube" frameborder="0" allowfullscreen>
+                  </iframe>
+                  <ion-card-content *ngIf="dato.videoText">
+                    {{ dato.videoText }}
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-md-12 text-center class="logos">
+                <a target="_blank" href="http://epe.edu.co">
+                  <img src="assets/img/logo_epe.png">
+                </a>
+              </ion-col>
+              <ion-col col-md-12 text-center class="logos">
+                <a target="_blank" href="http://epe.edu.co">
+                  <img src="assets/img/epe.png">
+                </a>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col col-md-9>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md-6>
+                  <h1>Edicion 1</h1>
+                </ion-col>
+                <ion-col col-md-6>
+                  <h2>VIDEO-ARTÍCULOS</h2>
+                </ion-col>
+                <ion-col col-12 *ngFor="let item of items | async">
+                  <ion-row>
+                    <ion-col col-md-6>
+                      <div *ngFor="let articulo of item.$key | slides:true | async">
+                        <ion-card (click)="navigateToPublicacion(item.$key, articulo.$key)">
+                          <img [attr.src]="articulo.$value.thumbnail | url | async">
+                        </ion-card>
+                      </div>
+                    </ion-col>
+                    <ion-col col-md-6>
+                      <ion-row>
+                        <ion-col col-md-6 *ngFor="let articulo of item.$key | slides:false | async">
+                          <ion-card (click)="navigateToPublicacion(item.$key, articulo.$key)">
+                            <img [attr.src]="articulo.$value.thumbnail | url | async">
+                          </ion-card>
+                        </ion-col>
+                        <ion-col col-md-6>
+                          <ion-card>
+                            <img src="assets/img/image.png">
+                          </ion-card>
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col col-md-12>
+                  <ion-card>
+                    <img [attr.src]="dato.imagen2 | url | async" />
                   </ion-card>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ion-col>
-
-
-          <ion-col class="proxima" col-md-6 col-12>
-            <ion-card>
-              <img [attr.src]="dato.imagen2 | url | async" />
-            </ion-card>
-          </ion-col>
-
-          <ion-col col-md-9 offset-md-3>
-            <ion-card>
-              <iframe width="100%" height="310" [src]="dato.videoId | youtube" frameborder="0" allowfullscreen>
-              </iframe>
-            </ion-card>
-          </ion-col>
-
         </ion-row>
       </ion-col>
       <ion-col col-md-2 offset-md-0 col-8 offset-2>
@@ -118,29 +109,8 @@
               </a>
             </ion-slide>
           </ion-slides>
-
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-row>
-      <ion-col col-md-10 col-12>
-        <p class="text-white"> Tv. 29 No. 38 - 27 Barrio La Soledad | Teléfono: (57-1) 2695658 | Bogotá - Colombia | rev.planteamientoseneducacion@epe.edu.co
-          |
-          <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
-        </p>
-      </ion-col>
-      <ion-col col-md-1 col-6 class="logos">
-        <img src="assets/img/app-store.svg" />
-      </ion-col>
-      <ion-col col-md-1 col-6 class="logos">
-        <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
-          <img src="assets/img/google-play.png" />
-        </a>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>

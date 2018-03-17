@@ -9,22 +9,19 @@ export class MyApp {
 
   rootPage: string = 'ArticulosPage';
 
-  pages: Array<{title: string, component: any, icon: string}>;
-  pages2: Array<{title: string, component: any, icon: string}>;
+  pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Libreria Digital', component: 'LibreriaDigitalPage', icon: 'list-box'},
-      { title: 'Articulos', component: 'LibreriaArticulosPage', icon: 'list-box'}
+      { title: 'Inicio', component: 'ArticulosPage'},
+      { title: 'Bandera Editorial', component: 'QuienesSomosPage'},
+      { title: 'Librería', component: 'LibreriaDigitalPage'},
+      { title: 'Artículos', component: 'LibreriaArticulosPage'},
+      { title: 'Contácto', component: 'ContactoPage'},
     ];
-    this.pages2 = [
-      { title: 'Quienes Somos', component: 'QuienesSomosPage', icon: 'contacts'},
-      //{ title: 'Historia', component: 'HistoriaPage', icon: 'medal'},
-      { title: 'Contacto', component: 'ContactoPage', icon: 'mail'},
-    ]
 
   }
 
