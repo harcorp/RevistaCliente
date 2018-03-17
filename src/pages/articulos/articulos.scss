@@ -27,4 +27,10 @@ page-articulos {
       color: color($colors, primary);
     }
   }
+  .cardVideo {
+    border-radius: 0;
+    padding-bottom: 0px;
+    background: none;
+    box-shadow: none;
+  }
 }

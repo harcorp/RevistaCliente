@@ -120,6 +120,4 @@ export class LoginPage {
     let modal = this.modalCtrl.create(SignupPage);
     modal.present();
   }
-
-
 }
