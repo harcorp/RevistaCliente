@@ -18,7 +18,7 @@
 
 .masters {
   background-color: color($colors, fondo);
-  margin-top: 115px;
+  // margin-top: 115px;
 }
 
 .logo_slide {
@@ -70,4 +70,14 @@ ion-header {
   width: 220px;
   top: 10px;
   z-index: 1000;
+}
+.spacer-1 {
+  display: block;
+  margin: 100px 0;
+}
+
+.targets {
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }

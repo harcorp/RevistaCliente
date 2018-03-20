@@ -1,4 +1,5 @@
 <ion-content padding class="masters">
+  <div class="spacer-1"></div>
   <ion-row>
     <ion-col col-md-3 *ngFor="let articulo of articulos | async">
       <ion-card>
@@ -50,10 +51,7 @@
           <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
         </p>
       </ion-col>
-      <ion-col col-md-1 col-6 class="logos">
-        <img src="assets/img/app-store.svg" />
-      </ion-col>
-      <ion-col col-md-1 col-6 class="logos">
+      <ion-col col-md-1 col-6 class="logos" end>
         <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
           <img src="assets/img/google-play.png" />
         </a>

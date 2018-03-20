@@ -1,76 +1,61 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      Ingresar
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <ion-icon name="md-close"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content padding class="masters">
   <ion-row>
-    <ion-col col-md-9 offset-md-1>
-    
-<ion-card>
-  <ion-card-content>
-  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
-    <ion-item>
-      <ion-label stacked>Correo Electronico</ion-label>
-      <ion-input #email formControlName="email" type="email" placeholder="Su Correo Electronico"
-        [class.invalid]="!loginForm.controls.email.valid &&
+    <ion-col col-md-12>
+      <ion-card>
+        <ion-card-content>
+          <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+            <ion-item>
+              <ion-label stacked>Correo Electronico</ion-label>
+              <ion-input #email formControlName="email" type="email" placeholder="Su Correo Electronico" [class.invalid]="!loginForm.controls.email.valid &&
           loginForm.controls.email.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  &&
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  &&
       loginForm.controls.email.dirty">
-      <p>Por favor ingrese un correo valido.</p>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Contraseña</ion-label>
-      <ion-input #password formControlName="password" type="password" placeholder="Su Contraseña"
-        [class.invalid]="!loginForm.controls.password.valid &&
+              <p>Por favor ingrese un correo valido.</p>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Contraseña</ion-label>
+              <ion-input #password formControlName="password" type="password" placeholder="Su Contraseña" [class.invalid]="!loginForm.controls.password.valid &&
           loginForm.controls.password.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  &&
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  &&
       loginForm.controls.password.dirty">
-      <p>Su contraseña tiene que ser de mas de 6 caracteres.</p>
-    </ion-item>
-    <button ion-button block type="submit">
-      Ingresar
-    </button>
-  </form>
+              <p>Su contraseña tiene que ser de mas de 6 caracteres.</p>
+            </ion-item>
+            <button ion-button block type="submit">
+              Ingresar
+            </button>
+          </form>
 
-  <button ion-button block clear (click)="goToResetPassword()">
-    ¿Olvido su Contraseña?
-  </button>
-<ion-row>
-  <ion-col col-md-6 col-12>
-  <button ion-button block outline icon-left (click)="signInFacebook()">
-    <ion-icon name="logo-facebook"></ion-icon>Facebook
-  </button>
-  </ion-col>
-    <ion-col col-md-6 col-12>
-        <button ion-button block outline icon-left (click)="signInGoogle()">
-          <ion-icon name="logo-google"></ion-icon>
-        Google
-      </button>
+          <button ion-button block clear (click)="goToResetPassword()">
+            ¿Olvido su Contraseña?
+          </button>
+          <ion-row>
+            <ion-col col-md-6 col-12>
+              <button ion-button block outline icon-left (click)="signInFacebook()">
+                <ion-icon name="logo-facebook"></ion-icon>Facebook
+              </button>
+            </ion-col>
+            <ion-col col-md-6 col-12>
+              <button ion-button block outline icon-left (click)="signInGoogle()">
+                <ion-icon name="logo-google"></ion-icon>
+                Google
+              </button>
+            </ion-col>
+            <ion-col col-12>
+              <button ion-button clear block (click)="goToSignUp()">¿Usuario Nuevo? Registrese aquí</button>
+            </ion-col>
+            <ion-col col-12>
+              <ion-note>
+                <a href="https://firebasestorage.googleapis.com/v0/b/revista-digital-bb5d4.appspot.com/o/AVISO_DE_PRIVACIDAD.pdf?alt=media&token=834b6ca1-97d4-4cf4-912f-7fe1ebdc0888"
+                  target="_blank">
+                  *Política de privacidad y tratamiento de datos personales
+                </a>
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
     </ion-col>
-    <ion-col col-12>
-      <button ion-button clear block (click)="goToSignUp()">¿Usuario Nuevo? Registrese aquí</button>
-    </ion-col>
-    <ion-col col-12>
-      <ion-note>
-        <a href="https://firebasestorage.googleapis.com/v0/b/revista-digital-bb5d4.appspot.com/o/AVISO_DE_PRIVACIDAD.pdf?alt=media&token=834b6ca1-97d4-4cf4-912f-7fe1ebdc0888" target="_blank">
-          *Política de privacidad y tratamiento de datos personales
-        </a>
-      </ion-note>
-      </ion-col>
-</ion-row>
-  </ion-card-content>
-</ion-card>
-</ion-col>
   </ion-row>
 </ion-content>

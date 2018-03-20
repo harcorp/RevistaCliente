@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ModalController } from 'ionic-angular';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -8,11 +11,24 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: string = 'ArticulosPage';
+  displayName: string;
+  logged: boolean;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public modalCtrl: ModalController, public afAuth: AngularFireAuth) {
     this.initializeApp();
+
+    afAuth.authState.subscribe(user => {
+      if (!user) {
+        this.displayName = null;
+        this.logged = false;        
+        return;
+      }
+
+      this.displayName = user.displayName;
+      this.logged = true;      
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -20,7 +36,7 @@ export class MyApp {
       { title: 'Bandera Editorial', component: 'QuienesSomosPage'},
       { title: 'Librería', component: 'LibreriaDigitalPage'},
       { title: 'Artículos', component: 'LibreriaArticulosPage'},
-      { title: 'Contácto', component: 'ContactoPage'},
+      { title: 'Contacto', component: 'ContactoPage'},
     ];
 
   }
@@ -31,6 +47,20 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
     });
+  }
+
+  goToLogin() {
+    let modal = this.modalCtrl.create(LoginPage);
+    modal.present();
+  }
+
+  goToSignUp() {
+    let modal = this.modalCtrl.create(SignupPage);
+    modal.present();
+  }
+
+  signOut() {
+    this.afAuth.auth.signOut();
   }
 
   openPage(page) {

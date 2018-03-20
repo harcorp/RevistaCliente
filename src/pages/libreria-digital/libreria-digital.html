@@ -1,4 +1,5 @@
 <ion-content padding class="masters">
+  <div class="spacer-1"></div>
   <ion-row>
     <ion-col col-md-3 *ngFor="let articulo of articulos | async">
       <ion-card>
@@ -42,22 +43,19 @@
   </ion-row>
 </ion-content>
 <ion-footer>
-  <ion-toolbar color="primary">
-    <ion-row>
-      <ion-col col-md-10 col-12>
-        <p class="text-white"> Tv. 29 No. 38 - 27 Barrio La Soledad | Teléfono: (57-1) 2695658 | Bogotá - Colombia | rev.planteamientoseneducacion@epe.edu.co
-          |
-          <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
-        </p>
-      </ion-col>
-      <ion-col col-md-1 col-6 class="logos">
-        <img src="assets/img/app-store.svg" />
-      </ion-col>
-      <ion-col col-md-1 col-6 class="logos">
-        <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
-          <img src="assets/img/google-play.png" />
-        </a>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>
+    <ion-toolbar color="primary">
+      <ion-row>
+        <ion-col col-md-10 col-12>
+          <p class="text-white"> Tv. 29 No. 38 - 27 Barrio La Soledad | Teléfono: (57-1) 2695658 | Bogotá - Colombia | rev.planteamientoseneducacion@epe.edu.co
+            |
+            <a class="doinmedia" href="http://doinmedia.com" target="_blank">Powered by Doinmedia</a>
+          </p>
+        </ion-col>
+        <ion-col col-md-1 col-6 class="logos" end>
+          <a href="https://play.google.com/store/apps/details?id=com.doinmedia.revistadigital.cliente" target="_blank">
+            <img src="assets/img/google-play.png" />
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>

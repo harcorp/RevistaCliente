@@ -98,20 +98,4 @@ export class ArticuloPage {
     let modal = this.modalCtrl.create(ComentarioVideoPage, {uidUser: this.uidUser, articuloId: this.articuloId, pubId: this.pubId});
     modal.present();
   }
-
-  goToLogin() {
-    let modal = this.modalCtrl.create(LoginPage);
-    modal.present();
-  }
-
-  goToSignUp() {
-    let modal = this.modalCtrl.create(SignupPage);
-    modal.present();
-  }
-
-  signOut() {
-    this.afAuth.auth.signOut();
-  }
-
-  
 }
