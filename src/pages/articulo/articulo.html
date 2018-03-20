@@ -39,6 +39,8 @@
               {{ (articulo | async)?.titulo }}
             </ion-card-title>
             <p>{{ (articulo | async)?.descripcion }}
+            </p>
+            <p>Autor: {{ (articulo | async)?.author }}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
