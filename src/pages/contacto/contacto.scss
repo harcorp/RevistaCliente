@@ -1,3 +1,16 @@
 page-contacto {
-
+    ul {
+        list-style-type: none;
+        li {
+            margin: 5px 0;
+            span {
+                margin-left: 34px;
+            }
+        }
+    }
+    .icon {
+        width: 25px !important;
+        display: inline;
+        margin: 0 5px -5px 0;
+    }
 }
