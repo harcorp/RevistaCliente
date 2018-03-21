@@ -11,6 +11,24 @@
           <ion-card-header>
             <ion-card-title>
               Comentarios
+              <ion-fab end *ngIf="logged">
+                  <button ion-fab color="primary">
+                    <ion-icon name="menu"></ion-icon>
+                    <ion-label>Deje su comentario</ion-label>
+                  </button>
+              
+                  <ion-fab-list side="top">
+                    <button ion-fab (click)="modalComentarioVideo()">
+                      <ion-icon name="videocam"></ion-icon>
+                    </button>
+                    <button ion-fab (click)="modalComentarioVoice()">
+                      <ion-icon name="mic"></ion-icon>
+                    </button>
+                    <button ion-fab (click)="modalComentarioTexto()">
+                      <ion-icon name="quote"></ion-icon>
+                    </button>
+                  </ion-fab-list>
+                </ion-fab>
             </ion-card-title>
           </ion-card-header>
 
@@ -46,25 +64,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-fab right bottom *ngIf="logged">
-    <button ion-fab color="primary">
-      <ion-icon name="menu"></ion-icon>
-      <ion-label>Deje su comentario</ion-label>
-    </button>
-
-    <ion-fab-list side="top">
-      <button ion-fab (click)="modalComentarioVideo()">
-        <ion-icon name="videocam"></ion-icon>
-      </button>
-      <button ion-fab (click)="modalComentarioVoice()">
-        <ion-icon name="mic"></ion-icon>
-      </button>
-      <button ion-fab (click)="modalComentarioTexto()">
-        <ion-icon name="quote"></ion-icon>
-      </button>
-    </ion-fab-list>
-  </ion-fab>
   <div class="spacer"></div>
 </ion-content>
 <ion-footer>
